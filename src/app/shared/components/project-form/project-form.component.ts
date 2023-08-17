@@ -3,21 +3,20 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
-  // forwardRef,
-  // Self,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ControlValueAccessor,
   FormBuilder,
   FormGroup,
-  // NG_VALUE_ACCESSOR,
   NgControl,
+  Validators,
 } from '@angular/forms';
 import { DatepickerComponent } from '../datepicker/datepicker.component';
 import { InputComponent } from '../input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { MessageModule } from 'primeng/message';
 
 @UntilDestroy()
 @Component({
@@ -28,6 +27,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
     DatepickerComponent,
     InputComponent,
     ReactiveFormsModule,
+    MessageModule,
   ],
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.scss'],
@@ -44,13 +44,19 @@ export class ProjectFormComponent implements ControlValueAccessor, OnInit {
   ) {
     this.ngControl.valueAccessor = this;
     this.formGroupControl = this.fb.group({
-      textControl: [''],
-      dateControl: [''],
+      textControl: ['', [Validators.required, Validators.minLength(3)]],
+      dateControl: ['', [Validators.required]],
     });
   }
 
   ngOnInit(): void {
     this.initControlValueChanges();
+  }
+
+  public submitForm(): void {
+    if (this.formGroupControl.invalid) {
+      this.formGroupControl.markAllAsTouched();
+    }
   }
 
   public writeValue(obj: { [key: string]: string }): void {
@@ -70,7 +76,6 @@ export class ProjectFormComponent implements ControlValueAccessor, OnInit {
     this.formGroupControl.valueChanges
       .pipe(untilDestroyed(this))
       .subscribe(value => {
-        console.log(value);
         this.onChange(value);
       });
   }

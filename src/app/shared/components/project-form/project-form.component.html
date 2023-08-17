@@ -1,6 +1,10 @@
-<form [formGroup]="formGroupControl">
+<form
+  [formGroup]="formGroupControl"
+  (ngSubmit)="submitForm()"
+>
   <app-input formControlName="textControl"></app-input>
   <app-datepicker formControlName="dateControl"></app-datepicker>
+  <button type="submit">Add</button>
 </form>
 <hr />
 <p>Form Value: {{ formGroupControl.value | json }}</p>

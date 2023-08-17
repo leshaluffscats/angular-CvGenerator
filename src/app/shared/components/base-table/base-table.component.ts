@@ -1,15 +1,17 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { IColumnName, IProjectsMock } from '../../constants/projectsMockData';
 
 @Component({
   selector: 'app-base-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TableModule],
   templateUrl: './base-table.component.html',
   styleUrls: ['./base-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseTableComponent {
-  @Input() data: unknown;
-  @Input() column: unknown[];
+  @Input() data: IProjectsMock[];
+  @Input() columns: IColumnName[];
 }

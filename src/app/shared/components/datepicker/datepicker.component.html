@@ -1,5 +1,9 @@
 <label>
   Date
   <p-calendar [formControl]="control"></p-calendar>
-  <p>Date value: {{ control.value | date }}</p>
+  <p-message
+    *ngIf="control.invalid && control.touched"
+    severity="error"
+    [text]="control['errors'] | json"
+  ></p-message>
 </label>

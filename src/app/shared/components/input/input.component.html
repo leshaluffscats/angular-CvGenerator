@@ -5,5 +5,9 @@
     pInputText
     [formControl]="control"
   />
+  <p-message
+    *ngIf="control.invalid && control.touched"
+    severity="error"
+    [text]="control['errors'] | json"
+  ></p-message>
 </label>
-<p>{{ control.value }}</p>

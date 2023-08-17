@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from 'src/app/shared/components/input/input.component';
 import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
+import { BaseTableComponent } from 'src/app/shared/components/base-table/base-table.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepi
     ReactiveFormsModule,
     InputComponent,
     DatepickerComponent,
+    BaseTableComponent,
   ],
   // exports: [ProjectListPageComponent],
 })
