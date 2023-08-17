@@ -1,0 +1,6 @@
+<form [formGroup]="formGroupControl">
+  <app-input formControlName="textControl"></app-input>
+  <app-datepicker formControlName="dateControl"></app-datepicker>
+</form>
+<hr />
+<p>Form Value: {{ formGroupControl.value | json }}</p>
