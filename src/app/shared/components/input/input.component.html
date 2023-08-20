@@ -6,8 +6,9 @@
     [formControl]="control"
   />
   <p-message
-    *ngIf="control.invalid && control.touched"
+    *ngIf="control.invalid && control.dirty"
     severity="error"
-    [text]="control['errors'] | json"
-  ></p-message>
+    [text]="control.errors | getErrorMessage | translate"
+  >
+  </p-message>
 </label>

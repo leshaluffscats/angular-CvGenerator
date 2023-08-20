@@ -6,10 +6,11 @@ import { AddProjectPageComponent } from './pages/add-project-page/add-project-pa
 import {
   ADD_PROJECT,
   EDIT_PROJECT,
+  PROJECT_LIST_PATH,
 } from 'src/app/shared/constants/routing-paths.consts';
 
 const routes: Routes = [
-  { path: '', component: ProjectListPageComponent }, //пустой путь сделать константой (path = fullPath)
+  { path: PROJECT_LIST_PATH.path, component: ProjectListPageComponent },
   { path: EDIT_PROJECT.path, component: EditProjectPageComponent },
   { path: ADD_PROJECT.path, component: AddProjectPageComponent },
 ];

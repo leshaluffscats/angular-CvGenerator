@@ -11,6 +11,7 @@ import { VirtualCvComponent } from './components/virtual-cv/virtual-cv.component
 import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
 import { ButtonModule } from 'primeng/button';
 import { ProjectFormComponent } from 'src/app/shared/components/project-form/project-form.component';
+import { BaseTable2Component } from 'src/app/shared/components/base-table2/base-table2.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ProjectFormComponent } from 'src/app/shared/components/project-form/pro
     EmployeeRoutingModule,
     ButtonModule,
     ProjectFormComponent,
+    BaseTable2Component,
   ],
   // exports: [EmployeesListPageComponent],
 })

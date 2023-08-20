@@ -4,6 +4,6 @@
   <p-message
     *ngIf="control.invalid && control.touched"
     severity="error"
-    [text]="control['errors'] | json"
+    [text]="control.errors | getErrorMessage | translate"
   ></p-message>
 </label>

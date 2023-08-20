@@ -6,7 +6,7 @@ export interface IProjectsMock {
   techStack: string;
 }
 
-export interface IColumnName {
+export interface IColumn {
   fieldCaption: string;
   fieldValue: string;
 }
@@ -40,4 +40,12 @@ export const projectsData: IProjectsMock[] = [
     endDate: 'In proccess',
     techStack: 'Angular, Node',
   },
+];
+
+export const columns: IColumn[] = [
+  { fieldValue: 'name', fieldCaption: 'Name' },
+  { fieldValue: 'startDate', fieldCaption: 'Start date' },
+  { fieldValue: 'endDate', fieldCaption: 'End date' },
+  { fieldValue: 'id', fieldCaption: 'id' },
+  { fieldValue: 'techStack', fieldCaption: 'Tech stack' },
 ];

@@ -1,0 +1,8 @@
+{
+  "COMMON": {
+    "VALIDATION_MESSAGES": {
+      "REQUIRED": "Это поле обязательно",
+      "MIN_LENGTH": "Недостаточно символов"
+    }
+  }
+}

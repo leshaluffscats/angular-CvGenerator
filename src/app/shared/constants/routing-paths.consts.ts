@@ -8,6 +8,12 @@ export const EMPTY_PATH: IRoutingPath = {
 export const CORE_PATH: IRoutingPath = EMPTY_PATH;
 export const EMPLOYEE_LIST_PATH: IRoutingPath = EMPTY_PATH;
 export const PROJECT_LIST_PATH: IRoutingPath = EMPTY_PATH;
+export const AUTH_PATH: IRoutingPath = EMPTY_PATH;
+
+export const AUTH: IRoutingPath = {
+  path: 'auth',
+  fullPath: '/auth',
+};
 
 export const EMPLOYEES: IRoutingPath = {
   path: 'employees',

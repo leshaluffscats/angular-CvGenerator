@@ -17,6 +17,8 @@ import { InputComponent } from '../input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MessageModule } from 'primeng/message';
+import { markAllAsDirty } from '../../utils/mark-all-as-dirty.utils';
+import { ButtonModule } from 'primeng/button';
 
 @UntilDestroy()
 @Component({
@@ -28,6 +30,7 @@ import { MessageModule } from 'primeng/message';
     InputComponent,
     ReactiveFormsModule,
     MessageModule,
+    ButtonModule,
   ],
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.scss'],
@@ -55,7 +58,8 @@ export class ProjectFormComponent implements ControlValueAccessor, OnInit {
 
   public submitForm(): void {
     if (this.formGroupControl.invalid) {
-      this.formGroupControl.markAllAsTouched();
+      // this.formGroupControl.markAllAsTouched();
+      markAllAsDirty(this.formGroupControl);
     }
   }
 

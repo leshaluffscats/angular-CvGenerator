@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from 'src/app/shared/components/input/input.component';
 import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
 import { BaseTableComponent } from 'src/app/shared/components/base-table/base-table.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BaseTableComponent } from 'src/app/shared/components/base-table/base-ta
     InputComponent,
     DatepickerComponent,
     BaseTableComponent,
+    TranslateModule,
   ],
   // exports: [ProjectListPageComponent],
 })

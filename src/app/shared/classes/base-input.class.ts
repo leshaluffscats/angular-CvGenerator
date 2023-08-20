@@ -26,8 +26,8 @@ export class BaseInputClass implements ControlValueAccessor, OnInit {
     if (this.ngControl.control?.errors !== this.control.errors) {
       this.initErrors();
     }
-    if (this.ngControl.control?.touched) {
-      this.control.markAsTouched();
+    if (this.ngControl.control?.dirty) {
+      this.control.markAsDirty();
       this.cdRef.markForCheck();
     } else {
       this.control.markAsPristine();

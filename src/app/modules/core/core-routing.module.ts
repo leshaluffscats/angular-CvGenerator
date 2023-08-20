@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CorePageComponent } from './page/core-page/core-page.component';
 import {
+  CORE_PATH,
   EMPLOYEES,
   PROJECTS,
 } from 'src/app/shared/constants/routing-paths.consts';
 
 const routes: Routes = [
   {
-    path: '',
+    path: CORE_PATH.path,
     component: CorePageComponent,
     children: [
       {

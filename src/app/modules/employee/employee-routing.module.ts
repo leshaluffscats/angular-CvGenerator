@@ -6,10 +6,11 @@ import { EmployeesListPageComponent } from './pages/employees-list-page/employee
 import {
   ADD_EMPLOYEE,
   EDIT_EMPLOYEE,
+  EMPLOYEE_LIST_PATH,
 } from 'src/app/shared/constants/routing-paths.consts';
 
 const routes: Routes = [
-  { path: '', component: EmployeesListPageComponent },
+  { path: EMPLOYEE_LIST_PATH.path, component: EmployeesListPageComponent },
   { path: EDIT_EMPLOYEE.path, component: EditEmployeePageComponent },
   { path: ADD_EMPLOYEE.path, component: AddEmployeePageComponent },
 ];

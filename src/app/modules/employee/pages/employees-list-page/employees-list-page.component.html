@@ -3,12 +3,24 @@
     label="Add employee"
     routerLink="add"
   ></p-button>
-  <table>
-    <tr routerLink="edit/:id">
-      <td>name</td>
-      <td>lastname</td>
-      <td>email</td>
-      <td>department</td>
-    </tr>
-  </table>
+  <app-base-table2>
+    <thead head>
+      <th *ngFor="let column of columns">
+        {{ column.fieldCaption }}
+      </th>
+    </thead>
+    <tbody body>
+      <ng-template
+        ngFor
+        let-employee
+        [ngForOf]="employeesData"
+      >
+        <tr>
+          <td *ngFor="let column of columns">
+            {{ employee[column.fieldValue] }}
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </app-base-table2>
 </main>

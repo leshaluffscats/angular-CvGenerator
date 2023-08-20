@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
-  IColumnName,
+  IColumn,
   IProjectsMock,
   projectsData,
+  columns,
 } from 'src/app/shared/constants/projectsMockData';
 
 @Component({
@@ -13,11 +14,5 @@ import {
 })
 export class ProjectListPageComponent {
   public data: IProjectsMock[] = projectsData;
-  public columns: IColumnName[] = [
-    { fieldValue: 'name', fieldCaption: 'Name' },
-    { fieldValue: 'startDate', fieldCaption: 'Start date' },
-    { fieldValue: 'endDate', fieldCaption: 'End date' },
-    { fieldValue: 'id', fieldCaption: 'id' },
-    { fieldValue: 'techStack', fieldCaption: 'Tech stack' },
-  ];
+  public columns: IColumn[] = columns;
 }
