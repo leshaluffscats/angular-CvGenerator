@@ -1,9 +1,9 @@
 <label>
-  Date
   <p-calendar [formControl]="control"></p-calendar>
-  <p-message
-    *ngIf="control.invalid && control.touched"
-    severity="error"
-    [text]="control.errors | getErrorMessage | translate"
-  ></p-message>
+  <small
+    class="p-error"
+    *ngIf="control.invalid && control.dirty"
+  >
+    {{ control.errors | getErrorMessage | translate }}
+  </small>
 </label>

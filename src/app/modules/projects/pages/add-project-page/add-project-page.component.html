@@ -1,8 +1,7 @@
-<app-project-form [formControl]="form"></app-project-form>
+<main>
+  <div class="form-wrapper">
+    <app-project-form [formControl]="form"></app-project-form>
+  </div>
+</main>
 
 <p>Add project page {{ form.value | json }}</p>
-<!-- <form [formGroup]="form">
-  <app-input formControlName="control"></app-input>
-  <app-datepicker formControlName="dateControl"></app-datepicker>
-</form>
-<p>From Parent Page{{ form.value | json }}</p> -->

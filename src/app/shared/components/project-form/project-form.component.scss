@@ -1,0 +1,7 @@
+@import '../../../../assets/styles/mixins.scss';
+form {
+  @include flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-between;
+}

@@ -1,14 +1,16 @@
-<label>
-  Text
+<span class="p-float-label">
   <input
     type="text"
     pInputText
     [formControl]="control"
+    [type]="type"
+    [id]="placeholder"
   />
-  <p-message
-    *ngIf="control.invalid && control.dirty"
-    severity="error"
-    [text]="control.errors | getErrorMessage | translate"
-  >
-  </p-message>
-</label>
+  <label [htmlFor]="placeholder">{{ placeholder }}</label>
+</span>
+<small
+  class="p-error"
+  *ngIf="control.invalid && control.dirty"
+>
+  {{ control.errors | getErrorMessage | translate }}
+</small>

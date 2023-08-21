@@ -10,6 +10,11 @@ export const EMPLOYEE_LIST_PATH: IRoutingPath = EMPTY_PATH;
 export const PROJECT_LIST_PATH: IRoutingPath = EMPTY_PATH;
 export const AUTH_PATH: IRoutingPath = EMPTY_PATH;
 
+export const CORE: IRoutingPath = {
+  path: 'home',
+  fullPath: '/home',
+};
+
 export const AUTH: IRoutingPath = {
   path: 'auth',
   fullPath: '/auth',

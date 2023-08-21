@@ -2,7 +2,10 @@
   [formGroup]="formGroupControl"
   (ngSubmit)="submitForm()"
 >
-  <app-input formControlName="textControl"></app-input>
+  <app-input
+    formControlName="textControl"
+    placeholder="name"
+  ></app-input>
   <app-datepicker formControlName="dateControl"></app-datepicker>
   <p-button
     type="submit"

@@ -1,24 +1,32 @@
-<form action="">
-  <div class="p-inputgroup">
-    <span class="p-inputgroup-addon">
-      <i class="pi pi-user"></i>
-    </span>
-    <input
-      pInputText
-      placeholder="Username"
+<main>
+  <div>
+    <img
+      src="../../../../../assets/images/logo.svg"
+      alt="Logo"
+    />
+    <img
+      src="../../../../../assets/images/Internship.svg"
+      alt="Logo"
     />
   </div>
-  <div class="p-inputgroup">
-    <span class="p-inputgroup-addon">
-      <i class="pi pi-shield"></i>
-    </span>
-    <input
-      pInputText
-      placeholder="Password"
-    />
-  </div>
-  <p-button
-    label="Submit"
-    routerLink="/"
-  ></p-button>
-</form>
+  <form [formGroup]="authForm">
+    <app-input
+      formControlName="username"
+      placeholder="username"
+    >
+    </app-input>
+    <app-input
+      formControlName="password"
+      placeholder="password"
+      type="password"
+    >
+    </app-input>
+    <p-button
+      label="Log in"
+      routerLink="/"
+      styleClass=".login-btn"
+    >
+    </p-button>
+    <p>{{ authForm.value | json }}</p>
+  </form>
+</main>

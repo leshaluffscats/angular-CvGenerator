@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/core/core.module').then(m => m.CoreModule),
   },
-  { path: '**', redirectTo: CORE_PATH.fullPath },
+  { path: '**', redirectTo: CORE_PATH.path },
 ];
 
 @NgModule({

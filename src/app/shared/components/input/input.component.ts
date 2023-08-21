@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -22,4 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputComponent extends BaseInputClass {}
+export class InputComponent extends BaseInputClass {
+  @Input() placeholder: string;
+  @Input() type: string = 'text';
+}

@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { employeesMockData } from '../../../../shared/constants/employeesMockData';
+import {
+  // IEmployeesMock,
+  employeesMockData,
+} from '../../../../shared/constants/employeesMockData';
 
 @Component({
   selector: 'app-employees-list-page',
@@ -10,8 +13,8 @@ import { employeesMockData } from '../../../../shared/constants/employeesMockDat
 export class EmployeesListPageComponent {
   public columns = [
     {
-      fieldValue: 'name',
-      fieldCaption: 'name',
+      fieldValue: 'firstName',
+      fieldCaption: 'First name',
     },
     {
       fieldValue: 'lastName',
