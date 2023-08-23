@@ -11,7 +11,7 @@
   </div>
   <form [formGroup]="authForm">
     <app-input
-      formControlName="username"
+      formControlName="email"
       placeholder="username"
     >
     </app-input>
@@ -23,10 +23,14 @@
     </app-input>
     <p-button
       label="Log in"
-      routerLink="/"
-      styleClass=".login-btn"
+      (click)="login()"
     >
     </p-button>
-    <p>{{ authForm.value | json }}</p>
   </form>
+  <p
+    *ngIf="error"
+    class="p-error"
+  >
+    {{ error }}
+  </p>
 </main>

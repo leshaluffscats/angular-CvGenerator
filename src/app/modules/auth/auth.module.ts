@@ -6,7 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputComponent } from 'src/app/shared/components/input/input.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
-// import { StyleClassModule } from 'primeng/styleclass';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [AuthPageComponent],
@@ -17,7 +17,7 @@ import { AuthPageComponent } from './pages/auth-page/auth-page.component';
     ButtonModule,
     InputComponent,
     ReactiveFormsModule,
-    // StyleClassModule,
+    MessagesModule,
   ],
 })
 export class AuthModule {}

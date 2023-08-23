@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   // IEmployeesMock,
   employeesMockData,
 } from '../../../../shared/constants/employeesMockData';
+import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
 
 @Component({
   selector: 'app-employees-list-page',
@@ -10,7 +11,7 @@ import {
   styleUrls: ['./employees-list-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeesListPageComponent {
+export class EmployeesListPageComponent implements OnInit {
   public columns = [
     {
       fieldValue: 'firstName',
@@ -33,5 +34,11 @@ export class EmployeesListPageComponent {
       fieldCaption: 'technology',
     },
   ];
-  public employeesData: unknown[] = employeesMockData;
+  public employeesData = employeesMockData;
+
+  constructor(private employeesService: EmployeesApiService) {}
+
+  ngOnInit(): void {
+    this.employeesService.getEmployees().subscribe();
+  }
 }

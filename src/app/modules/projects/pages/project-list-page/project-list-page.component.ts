@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   IColumn,
   IProjectsMock,
-  projectsData,
   columns,
+  projectsData,
 } from 'src/app/shared/constants/projectsMockData';
 
 @Component({
