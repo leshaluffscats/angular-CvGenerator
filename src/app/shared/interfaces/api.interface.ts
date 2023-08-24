@@ -3,7 +3,7 @@ export interface IJwt {
   refresh_token: string;
 }
 
-export interface IUser {
+export interface IAuthCredentials {
   email: string;
   password: string;
 }

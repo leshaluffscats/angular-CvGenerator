@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { PROJECTS } from 'src/app/shared/constants/routing-paths.consts';
-import { IJwt } from 'src/app/shared/interfaces/api.interface';
+import { Store } from '@ngrx/store';
 import { AuthApiService } from 'src/app/shared/services/api/auth/auth.api.service';
-import { CookieService } from 'src/app/shared/services/cookie/cookie.service';
-import { parseJwt } from 'src/app/shared/utils/parse-jwt';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { getAccessToken } from 'src/app/store/auth/auth.actions';
+import { AuthFacade } from 'src/app/store/auth/auth.facade';
 
 @Component({
   selector: 'app-auth-page',
@@ -19,9 +18,10 @@ export class AuthPageComponent {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthApiService,
-    private cookie: CookieService,
-    private router: Router,
+    private authApi: AuthApiService,
+    private auth: AuthService,
+    private store: Store,
+    private authFacade: AuthFacade,
   ) {
     this.authForm = this.fb.group({
       email: ['', [Validators.required]],
@@ -30,13 +30,8 @@ export class AuthPageComponent {
   }
 
   public login() {
-    this.auth.login(this.authForm.getRawValue()).subscribe({
-      next: (tokens: IJwt) => {
-        parseJwt(tokens.access_token);
-        this.cookie.setCookie('access', tokens.access_token);
-        this.router.navigate([PROJECTS.path]); //перенести в auth service который не api
-      },
-      error: err => (this.error = err.message),
-    });
+    this.store.dispatch(getAccessToken(this.authForm.getRawValue()));
+    // this.authFacade.getAccessToken(this.authForm.getRawValue());
+    this.auth.submitAuth();
   }
 }

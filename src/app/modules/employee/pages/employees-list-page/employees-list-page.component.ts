@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
 import {
   // IEmployeesMock,
   employeesMockData,
 } from '../../../../shared/constants/employeesMockData';
-import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
 
 @Component({
   selector: 'app-employees-list-page',
@@ -34,7 +34,8 @@ export class EmployeesListPageComponent implements OnInit {
       fieldCaption: 'technology',
     },
   ];
-  public employeesData = employeesMockData;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public employeesData: any[] = employeesMockData;
 
   constructor(private employeesService: EmployeesApiService) {}
 

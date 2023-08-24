@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BaseInputClass } from './shared/classes/base-input.class';
 import { httpInterceptorProviders } from './shared/interceptors';
+import { NgrxModule } from './store/ngrx.module';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -29,6 +30,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgrxModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
