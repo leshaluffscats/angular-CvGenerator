@@ -1,14 +1,26 @@
-<nav>
+<nav [ngClass]="{ 'opened': isOpened, 'closed': !isOpened }">
   <a
     routerLink="/employees"
     routerLinkActive="active"
   >
-    Employee
+    <span class="pi pi-user"></span>
+    <ng-template [ngIf]="isOpened">Employee</ng-template>
   </a>
   <a
     routerLink="/projects"
     routerLinkActive="active"
   >
-    Projects
+    <span class="pi pi-briefcase"></span>
+    <ng-template [ngIf]="isOpened">Projects</ng-template>
   </a>
+  <button (click)="toggleSidebar()">
+    <span
+      *ngIf="!isOpened"
+      class="pi pi-angle-double-right"
+    ></span>
+    <span
+      *ngIf="isOpened"
+      class="pi pi-angle-double-left"
+    ></span>
+  </button>
 </nav>

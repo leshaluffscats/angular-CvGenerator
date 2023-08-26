@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AuthApiService } from 'src/app/shared/services/api/auth/auth.api.service';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { markAllAsDirty } from 'src/app/shared/utils/mark-all-as-dirty.utils';
 import { getAccessToken } from 'src/app/store/auth/auth.actions';
 import { AuthFacade } from 'src/app/store/auth/auth.facade';
 
@@ -18,8 +17,6 @@ export class AuthPageComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authApi: AuthApiService,
-    private auth: AuthService,
     private store: Store,
     private authFacade: AuthFacade,
   ) {
@@ -30,8 +27,12 @@ export class AuthPageComponent {
   }
 
   public login() {
+    if (this.authForm.invalid) {
+      markAllAsDirty(this.authForm);
+      return;
+    }
+
     this.store.dispatch(getAccessToken(this.authForm.getRawValue()));
     // this.authFacade.getAccessToken(this.authForm.getRawValue());
-    this.auth.submitAuth();
   }
 }

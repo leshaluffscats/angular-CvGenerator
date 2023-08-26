@@ -16,7 +16,7 @@ export interface IAuthInitialState {
 }
 
 export const authInitialState: IAuthInitialState = {
-  accessToken: '',
+  accessToken: null,
   expires: 0,
   isLoading: false,
   error: null,
@@ -36,6 +36,23 @@ export const authReducer = createReducer(
     error: null,
   })),
   on(authActions.getAccessTokenFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error: error,
+  })),
+
+  on(authActions.refreshToken, state => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(authActions.refreshTokenSuccess, (state, { accessToken }) => ({
+    ...state,
+    isLoading: false,
+    error: null,
+    expires: parseJwt(accessToken).expires,
+    accessToken: accessToken,
+  })),
+  on(authActions.refreshTokenFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error,

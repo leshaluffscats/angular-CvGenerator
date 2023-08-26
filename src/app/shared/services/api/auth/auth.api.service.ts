@@ -11,7 +11,6 @@ export class AuthApiService {
   constructor(private http: HttpClient) {}
 
   public login(user: IAuthCredentials): Observable<IJwt> {
-    console.log(user);
     return this.http.post<IJwt>(`${API_AUTH_URL}/login`, user);
   }
 

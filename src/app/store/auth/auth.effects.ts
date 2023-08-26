@@ -3,13 +3,11 @@
 
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import * as authActions from './auth.actions';
-import { catchError, mergeMap, map, of } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import { IJwt } from 'src/app/shared/interfaces/api.interface';
 import { AuthApiService } from 'src/app/shared/services/api/auth/auth.api.service';
-import {
-  IJwt,
-  // IAuthCredentials,
-} from 'src/app/shared/interfaces/api.interface';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import * as authActions from './auth.actions';
 
 @Injectable()
 export class authEffects {
@@ -19,6 +17,27 @@ export class authEffects {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mergeMap((user: any) =>
         this.authApi.login(user).pipe(
+          tap((tokens: IJwt) => {
+            if (tokens.access_token) {
+              this.auth.submitAuth();
+            }
+          }),
+          map((tokens: IJwt) =>
+            authActions.getAccessTokenSuccess({
+              accessToken: tokens.access_token,
+            }),
+          ),
+          catchError(error => of(authActions.getAccessTokenFailure(error))),
+        ),
+      ),
+    ),
+  );
+
+  refreshTokens$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.refreshToken),
+      mergeMap(() =>
+        this.authApi.refreshToken().pipe(
           map((tokens: IJwt) =>
             authActions.getAccessTokenSuccess({
               accessToken: tokens.access_token,
@@ -31,6 +50,7 @@ export class authEffects {
   );
 
   constructor(
+    private auth: AuthService,
     private actions$: Actions,
     private authApi: AuthApiService,
   ) {}

@@ -12,6 +12,7 @@ import { EmployeeFormComponent } from './components/employee-form/employee-form.
 import { ButtonModule } from 'primeng/button';
 import { ProjectFormComponent } from 'src/app/shared/components/project-form/project-form.component';
 import { BaseTable2Component } from 'src/app/shared/components/base-table2/base-table2.component';
+import { BaseTableComponent } from 'src/app/shared/components/base-table/base-table.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { BaseTable2Component } from 'src/app/shared/components/base-table2/base-
     ButtonModule,
     ProjectFormComponent,
     BaseTable2Component,
+    BaseTableComponent,
   ],
   // exports: [EmployeesListPageComponent],
 })

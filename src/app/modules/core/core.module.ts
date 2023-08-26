@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreRoutingModule } from './core-routing.module';
+import { NgModule } from '@angular/core';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PageTitlesComponent } from './components/page-titles/page-titles.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CoreRoutingModule } from './core-routing.module';
 import { CorePageComponent } from './page/core-page/core-page.component';
 
 @NgModule({
@@ -13,7 +14,7 @@ import { CorePageComponent } from './page/core-page/core-page.component';
     PageTitlesComponent,
     CorePageComponent,
   ],
-  imports: [CommonModule, CoreRoutingModule],
+  imports: [CommonModule, CoreRoutingModule, ToggleButtonModule],
   // exports: [CorePageComponent],
 })
 export class CoreModule {}

@@ -3,7 +3,11 @@
     label="Add employee"
     routerLink="add"
   ></p-button>
-  <app-base-table2>
+  <app-base-table
+    [columns]="columns"
+    [data]="employeesData"
+  ></app-base-table>
+  <!-- <app-base-table2>
     <thead head>
       <th *ngFor="let column of columns">
         {{ column.fieldCaption }}
@@ -22,5 +26,5 @@
         </tr>
       </ng-template>
     </tbody>
-  </app-base-table2>
+  </app-base-table2> -->
 </main>

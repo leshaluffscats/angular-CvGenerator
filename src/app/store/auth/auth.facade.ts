@@ -14,6 +14,6 @@ export class AuthFacade {
   }
 
   public getAccessToken(user: IAuthCredentials): void {
-    this.store.dispatch(getAccessToken({ user: user }));
+    this.store.dispatch(getAccessToken({ user }));
   }
 }

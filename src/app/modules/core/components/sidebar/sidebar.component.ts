@@ -6,4 +6,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  public isOpened: boolean = true;
+
+  constructor() {}
+
+  public toggleSidebar() {
+    this.isOpened = !this.isOpened;
+  }
+}

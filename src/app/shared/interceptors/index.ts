@@ -6,12 +6,12 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 export const httpInterceptorProviders: Provider[] = [
   {
     provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
+    useClass: TokenInterceptor,
     multi: true,
   },
   {
     provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
+    useClass: AuthInterceptor,
     multi: true,
   },
 ];

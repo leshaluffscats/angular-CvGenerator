@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AUTH, CORE_PATH } from './shared/constants/routing-paths.consts';
+import { authGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
   },
   {
     path: CORE_PATH.path,
+    canMatch: [authGuard],
     loadChildren: () =>
       import('./modules/core/core.module').then(m => m.CoreModule),
   },
