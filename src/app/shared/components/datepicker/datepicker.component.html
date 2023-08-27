@@ -1,5 +1,8 @@
 <label>
-  <p-calendar [formControl]="control"></p-calendar>
+  <p-calendar
+    [formControl]="control"
+    [placeholder]="placeholder"
+  ></p-calendar>
   <small
     class="p-error"
     *ngIf="control.invalid && control.dirty"

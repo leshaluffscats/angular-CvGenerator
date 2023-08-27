@@ -1,7 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { IColumn, IProjectsMock } from '../../constants/projectsMockData';
+
+interface IColumns {
+  fieldValue: string;
+  fieldCaption: string;
+}
 
 @Component({
   selector: 'app-base-table',
@@ -12,6 +16,6 @@ import { IColumn, IProjectsMock } from '../../constants/projectsMockData';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseTableComponent {
-  @Input() data: IProjectsMock[];
-  @Input() columns: IColumn[];
+  @Input() data: unknown[];
+  @Input() columns: IColumns[];
 }

@@ -9,7 +9,9 @@
     let-item
   >
     <tr>
-      <td *ngFor="let column of columns">{{ item[column.fieldValue] }}</td>
+      <td *ngFor="let column of columns">
+        {{ item[column.fieldValue] }}
+      </td>
     </tr>
   </ng-template>
 </p-table>

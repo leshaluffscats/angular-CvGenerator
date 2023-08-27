@@ -2,14 +2,43 @@
   [formGroup]="formGroupControl"
   (ngSubmit)="submitForm()"
 >
-  <app-input
-    formControlName="textControl"
-    placeholder="name"
-  ></app-input>
-  <app-datepicker formControlName="dateControl"></app-datepicker>
-  <p-button
-    type="submit"
-    label="Add"
-  >
-  </p-button>
+  <div>
+    <app-input
+      formControlName="projectName"
+      placeholder="name"
+    ></app-input>
+    <app-datepicker
+      formControlName="startDate"
+      placeholder="start date"
+    ></app-datepicker>
+    <app-datepicker
+      formControlName="endDate"
+      placeholder="end date"
+    ></app-datepicker>
+  </div>
+  <div>
+    <app-input
+      type="number"
+      formControlName="teamSize"
+      placeholder="team size"
+    ></app-input>
+    <app-chips
+      formControlName="techStack"
+      placeholder="Tech stack"
+    ></app-chips>
+    <app-chips
+      formControlName="teamRoles"
+      placeholder="Roles"
+    ></app-chips>
+  </div>
+  <div>
+    <app-textarea
+      formControlName="description"
+      placeholder="description"
+    ></app-textarea>
+    <!-- <app-textarea
+        formControlName="responsibilitiesControl"
+        placeholder="responsibilities"
+        ></app-textarea> -->
+  </div>
 </form>

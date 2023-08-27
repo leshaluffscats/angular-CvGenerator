@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { getAccessToken, refreshToken } from './auth.actions';
-import { IAuthCredentials } from 'src/app/shared/interfaces/api.interface';
+import { IAuthCredentials } from 'src/app/shared/interfaces/auth-api.interface';
 
 @Injectable({
   providedIn: 'root',

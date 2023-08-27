@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_AUTH_URL } from '../../../constants/api.consts';
 import { Observable } from 'rxjs';
-import { IJwt, IAuthCredentials } from '../../../interfaces/api.interface';
+import { IJwt, IAuthCredentials } from '../../../interfaces/auth-api.interface';
 
 @Injectable({
   providedIn: 'root',

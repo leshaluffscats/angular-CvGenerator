@@ -1,24 +1,25 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   OnInit,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   ControlValueAccessor,
   FormBuilder,
   FormGroup,
   NgControl,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DatepickerComponent } from '../datepicker/datepicker.component';
-import { InputComponent } from '../input/input.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MessageModule } from 'primeng/message';
 import { markAllAsDirty } from '../../utils/mark-all-as-dirty.utils';
-import { ButtonModule } from 'primeng/button';
+import { ChipsComponent } from '../chips/chips.component';
+import { DatepickerComponent } from '../datepicker/datepicker.component';
+import { InputComponent } from '../input/input.component';
+import { TextareaComponent } from '../textarea/textarea.component';
 
 @UntilDestroy()
 @Component({
@@ -30,7 +31,9 @@ import { ButtonModule } from 'primeng/button';
     InputComponent,
     ReactiveFormsModule,
     MessageModule,
-    ButtonModule,
+
+    TextareaComponent,
+    ChipsComponent,
   ],
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.scss'],
@@ -47,8 +50,14 @@ export class ProjectFormComponent implements ControlValueAccessor, OnInit {
   ) {
     this.ngControl.valueAccessor = this;
     this.formGroupControl = this.fb.group({
-      textControl: ['', [Validators.required, Validators.minLength(3)]],
-      dateControl: ['', [Validators.required]],
+      projectName: ['', [Validators.required, Validators.minLength(3)]],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      teamSize: ['', [Validators.required]],
+      techStack: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      responsibilities: ['', [Validators.required]],
+      teamRoles: ['', [Validators.required]],
     });
   }
 
@@ -58,7 +67,6 @@ export class ProjectFormComponent implements ControlValueAccessor, OnInit {
 
   public submitForm(): void {
     if (this.formGroupControl.invalid) {
-      // this.formGroupControl.markAllAsTouched();
       markAllAsDirty(this.formGroupControl);
     }
   }

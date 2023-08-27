@@ -4,7 +4,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
-import { IJwt } from 'src/app/shared/interfaces/api.interface';
+import { IJwt } from 'src/app/shared/interfaces/auth-api.interface';
 import { AuthApiService } from 'src/app/shared/services/api/auth/auth.api.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import * as authActions from './auth.actions';

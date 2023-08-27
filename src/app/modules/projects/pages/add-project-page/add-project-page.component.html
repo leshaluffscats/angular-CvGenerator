@@ -1,6 +1,12 @@
 <main>
   <div class="form-wrapper">
     <app-project-form [formControl]="form"></app-project-form>
+    <p-button
+      type="submit"
+      label="Add"
+      (click)="addProject()"
+    >
+    </p-button>
   </div>
 </main>
 

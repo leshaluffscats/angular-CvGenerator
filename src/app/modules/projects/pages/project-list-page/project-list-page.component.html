@@ -5,5 +5,5 @@
 </p-button>
 <app-base-table
   [columns]="columns"
-  [data]="data"
+  [data]="data$ | async"
 ></app-base-table>

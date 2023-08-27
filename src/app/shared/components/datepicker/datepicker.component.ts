@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { BaseInputClass } from '../../classes/base-input.class';
@@ -22,4 +22,6 @@ import { GetErrorMessagePipe } from '../../pipes/get-error-message/get-error-mes
   styleUrls: ['./datepicker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DatepickerComponent extends BaseInputClass {}
+export class DatepickerComponent extends BaseInputClass {
+  @Input() placeholder: string;
+}

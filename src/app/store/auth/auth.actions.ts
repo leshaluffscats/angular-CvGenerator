@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IAuthCredentials } from 'src/app/shared/interfaces/api.interface';
+import { IAuthCredentials } from 'src/app/shared/interfaces/auth-api.interface';
 import { IAuthError } from './auth.reducer';
 
 export const refreshToken = createAction('[Auth] Refresh token');
