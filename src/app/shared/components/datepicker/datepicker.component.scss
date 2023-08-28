@@ -2,3 +2,8 @@
   width: 100%;
   display: block;
 }
+
+::ng-deep span {
+  display: block;
+  width: 100%;
+}

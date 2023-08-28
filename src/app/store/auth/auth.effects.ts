@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import * as authActions from './auth.actions';
 
 @Injectable()
-export class authEffects {
+export class AuthEffects {
   getToken$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.getAccessToken),

@@ -3,14 +3,14 @@
     routerLink="/employees"
     routerLinkActive="active"
   >
-    <span class="pi pi-user"></span>
+    <i class="pi pi-user"></i>
     <ng-template [ngIf]="isOpened">Employees</ng-template>
   </a>
   <a
     routerLink="/projects"
     routerLinkActive="active"
   >
-    <span class="pi pi-briefcase"></span>
+    <i class="pi pi-briefcase"></i>
     <ng-template [ngIf]="isOpened">Projects</ng-template>
   </a>
   <button (click)="toggleSidebar()">

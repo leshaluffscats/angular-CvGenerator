@@ -1,7 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { IColumn } from 'src/app/shared/interfaces/columns.interface';
 import { IProject } from 'src/app/shared/interfaces/projects.interface';
-import { ProjectsApiService } from 'src/app/shared/services/api/projects/projects-api.service';
+import { AppState } from 'src/app/store';
+import { getProjects } from 'src/app/store/projects/projects.actions';
+import { selectProjects } from 'src/app/store/projects/projects.selector';
+import { columns } from '../../consts/column.const';
 
 @Component({
   selector: 'app-project-list-page',
@@ -11,28 +16,12 @@ import { ProjectsApiService } from 'src/app/shared/services/api/projects/project
 })
 export class ProjectListPageComponent implements OnInit {
   public data$: Observable<IProject[]>;
-  public columns = [
-    {
-      fieldValue: 'projectName',
-      fieldCaption: 'Project Name',
-    },
-    {
-      fieldValue: 'description',
-      fieldCaption: 'Description',
-    },
-    {
-      fieldValue: 'startDate',
-      fieldCaption: 'Start Date',
-    },
-    {
-      fieldValue: 'endDate',
-      fieldCaption: 'End Date',
-    },
-  ];
+  public columns: IColumn[] = columns;
 
-  constructor(private projectsApi: ProjectsApiService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.data$ = this.projectsApi.getProjects();
+    this.store.dispatch(getProjects());
+    this.data$ = this.store.select(selectProjects);
   }
 }

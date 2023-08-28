@@ -17,7 +17,7 @@ export interface IAuthInitialState {
 
 export const authInitialState: IAuthInitialState = {
   accessToken: null,
-  expires: 0,
+  expires: null,
   isLoading: false,
   error: null,
 };

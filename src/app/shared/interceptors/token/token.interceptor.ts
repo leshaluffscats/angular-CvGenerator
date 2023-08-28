@@ -28,7 +28,8 @@ export class TokenInterceptor implements HttpInterceptor {
     this.store
       .select(selectAccessToken)
       .subscribe(accessToken => (this.accessToken = accessToken));
-
+    // !subscribe должен быть только в компонентах или в классаз которые могут быть destroyed
+    // потому что нет способа отписаться не из компонента
     if (!this.accessToken) {
       this.router.navigate([AUTH.path]);
       return next.handle(request);

@@ -16,14 +16,12 @@ export interface IProject {
   startDate: string;
   endDate: string;
   teamSize: number;
-  techStack: ITechStack[];
-  responsibilities: IResponsibilites[];
-  teamRoles: ITeamRoles[];
+  techStack: unknown;
+  responsibilities: unknown;
+  teamRoles: unknown;
 }
 
-interface ITechStack {
+export interface INameAndId {
   id: number;
   name: string;
 }
-interface IResponsibilites extends ITechStack {}
-interface ITeamRoles extends ITechStack {}
