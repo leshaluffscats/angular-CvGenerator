@@ -9,3 +9,7 @@ export const getProjectsFromApiSuccess = createAction(
   '[Projects list] Get projects from API success',
   props<{ projects: IProject[] }>(),
 );
+
+export const getProjectsFromApiFailure = createAction(
+  '[Projects list] Get projects from API failure',
+);

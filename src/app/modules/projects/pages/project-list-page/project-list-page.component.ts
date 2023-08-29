@@ -6,7 +6,7 @@ import { IProject } from 'src/app/shared/interfaces/projects.interface';
 import { AppState } from 'src/app/store';
 import { getProjects } from 'src/app/store/projects/projects.actions';
 import { selectProjects } from 'src/app/store/projects/projects.selector';
-import { columns } from '../../consts/column.const';
+import { columns } from './consts/column.const';
 
 @Component({
   selector: 'app-project-list-page',

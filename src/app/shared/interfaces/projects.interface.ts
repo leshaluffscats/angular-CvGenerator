@@ -16,9 +16,20 @@ export interface IProject {
   startDate: string;
   endDate: string;
   teamSize: number;
-  techStack: unknown;
-  responsibilities: unknown;
-  teamRoles: unknown;
+  techStack: string[];
+  responsibilities: string[];
+  teamRoles: string[];
+}
+export interface IProjectDto {
+  id: number;
+  projectName: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  teamSize: number;
+  techStack: INameAndId[];
+  responsibilities: INameAndId[];
+  teamRoles: INameAndId[];
 }
 
 export interface INameAndId {

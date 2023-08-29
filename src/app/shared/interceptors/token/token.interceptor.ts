@@ -7,15 +7,13 @@ import {
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, mergeMap, take } from 'rxjs';
 import { AppState } from 'src/app/store';
 import { selectAccessToken } from 'src/app/store/auth/auth.selector';
 import { AUTH } from '../../constants/routing-paths.consts';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  accessToken: string;
-
   constructor(
     private store: Store<AppState>,
     private router: Router,
@@ -25,19 +23,18 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    this.store
-      .select(selectAccessToken)
-      .subscribe(accessToken => (this.accessToken = accessToken));
-    // !subscribe должен быть только в компонентах или в классаз которые могут быть destroyed
-    // потому что нет способа отписаться не из компонента
-    if (!this.accessToken) {
-      this.router.navigate([AUTH.path]);
-      return next.handle(request);
-    }
-
-    const newReq = request.clone({
-      setHeaders: { Authorization: `Bearer ${this.accessToken}` },
-    });
-    return next.handle(newReq);
+    return this.store.select(selectAccessToken).pipe(
+      take(1),
+      mergeMap((accessToken: string) => {
+        if (!accessToken) {
+          this.router.navigate([AUTH.path]);
+          return next.handle(request);
+        }
+        const newReq = request.clone({
+          setHeaders: { Authorization: `Bearer ${accessToken}` },
+        });
+        return next.handle(newReq);
+      }),
+    );
   }
 }

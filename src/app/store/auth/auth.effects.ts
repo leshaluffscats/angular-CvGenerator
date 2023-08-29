@@ -8,6 +8,7 @@ import { IJwt } from 'src/app/shared/interfaces/auth-api.interface';
 import { AuthApiService } from 'src/app/shared/services/api/auth/auth.api.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import * as authActions from './auth.actions';
+import { ErrorService } from 'src/app/shared/services/error/error.service';
 
 @Injectable()
 export class AuthEffects {
@@ -27,7 +28,10 @@ export class AuthEffects {
               accessToken: tokens.access_token,
             }),
           ),
-          catchError(error => of(authActions.getAccessTokenFailure(error))),
+          catchError(error => {
+            this.errorService.showError(error.message);
+            return of(authActions.getAccessTokenFailure(error));
+          }),
         ),
       ),
     ),
@@ -53,5 +57,6 @@ export class AuthEffects {
     private auth: AuthService,
     private actions$: Actions,
     private authApi: AuthApiService,
+    private errorService: ErrorService,
   ) {}
 }
