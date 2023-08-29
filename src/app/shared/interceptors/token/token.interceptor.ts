@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, mergeMap, take } from 'rxjs';
 import { AppState } from 'src/app/store';
-import { selectAccessToken } from 'src/app/store/auth/auth.selector';
+import { AuthFacade } from 'src/app/store/auth/auth.facade';
 import { AUTH } from '../../constants/routing-paths.consts';
 
 @Injectable()
@@ -17,13 +17,14 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private store: Store<AppState>,
     private router: Router,
+    private authFacade: AuthFacade,
   ) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    return this.store.select(selectAccessToken).pipe(
+    return this.authFacade.accessToken$.pipe(
       take(1),
       mergeMap((accessToken: string) => {
         if (!accessToken) {

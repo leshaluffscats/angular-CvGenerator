@@ -43,11 +43,11 @@ export class AuthEffects {
       mergeMap(() =>
         this.authApi.refreshToken().pipe(
           map((tokens: IJwt) =>
-            authActions.getAccessTokenSuccess({
+            authActions.refreshTokenSuccess({
               accessToken: tokens.access_token,
             }),
           ),
-          catchError(error => of(authActions.getAccessTokenFailure(error))),
+          catchError(error => of(authActions.refreshTokenFailure(error))),
         ),
       ),
     ),

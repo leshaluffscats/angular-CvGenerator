@@ -21,5 +21,6 @@ export const projectsReducer = createReducer(
   on(projectsActions.getProjectsFromApiSuccess, (state, { projects }) => ({
     ...state,
     projects: projects,
+    isLoading: false,
   })),
 );

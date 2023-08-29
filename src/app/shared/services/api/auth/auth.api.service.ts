@@ -11,10 +11,14 @@ export class AuthApiService {
   constructor(private http: HttpClient) {}
 
   public login(user: IAuthCredentials): Observable<IJwt> {
-    return this.http.post<IJwt>(`${API_AUTH_URL}/login`, user);
+    return this.http.post<IJwt>(`${API_AUTH_URL}/login`, user, {
+      withCredentials: true,
+    });
   }
 
   public refreshToken(): Observable<IJwt> {
-    return this.http.get<IJwt>(`${API_AUTH_URL}/refresh`);
+    return this.http.get<IJwt>(`${API_AUTH_URL}/refresh`, {
+      withCredentials: true,
+    });
   }
 }
