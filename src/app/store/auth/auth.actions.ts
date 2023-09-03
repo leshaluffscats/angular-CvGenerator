@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IAuthCredentials } from 'src/app/shared/interfaces/auth-api.interface';
-import { IAuthError } from './auth.reducer';
+import { IError } from 'src/app/shared/interfaces/error.interface';
 
 // Refresh actions
 export const refreshToken = createAction('[Auth] Refresh token');
@@ -10,7 +10,7 @@ export const refreshTokenSuccess = createAction(
 );
 export const refreshTokenFailure = createAction(
   '[Auth] Refresh token failure',
-  props<{ error: IAuthError }>(),
+  props<{ error: IError }>(),
 );
 
 // get access token actions
@@ -24,5 +24,5 @@ export const getAccessTokenSuccess = createAction(
 );
 export const getAccessTokenFailure = createAction(
   '[Auth] Get access token failure',
-  props<{ error: IAuthError }>(),
+  props<{ error: IError }>(),
 );

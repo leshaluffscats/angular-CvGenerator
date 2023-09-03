@@ -1,18 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 import * as authActions from './auth.actions';
 import { parseJwt } from 'src/app/shared/utils/parse-jwt';
-
-export interface IAuthError {
-  message: string;
-  error: string;
-  statusCode: number;
-}
+import { IError } from 'src/app/shared/interfaces/error.interface';
 
 export interface IAuthInitialState {
   accessToken: string;
   expires: number;
   isLoading: boolean;
-  error: IAuthError | null;
+  error: IError;
 }
 
 export const authInitialState: IAuthInitialState = {

@@ -7,3 +7,9 @@
   ></textarea>
   <label for="float-input">{{ placeholder }}</label>
 </span>
+<small
+  class="p-error"
+  *ngIf="control.invalid && control.dirty"
+>
+  {{ control.errors | getErrorMessage | translate }}
+</small>

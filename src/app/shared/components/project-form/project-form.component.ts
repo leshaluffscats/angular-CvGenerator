@@ -41,7 +41,7 @@ import { TextareaComponent } from '../textarea/textarea.component';
   providers: [],
 })
 export class ProjectFormComponent implements ControlValueAccessor, OnInit {
-  public formGroupControl: FormGroup;
+  public formGroup: FormGroup;
 
   constructor(
     private ngControl: NgControl,
@@ -49,7 +49,7 @@ export class ProjectFormComponent implements ControlValueAccessor, OnInit {
     private readonly cdRef: ChangeDetectorRef,
   ) {
     this.ngControl.valueAccessor = this;
-    this.formGroupControl = this.fb.group({
+    this.formGroup = this.fb.group({
       projectName: ['', [Validators.required, Validators.minLength(3)]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -65,14 +65,19 @@ export class ProjectFormComponent implements ControlValueAccessor, OnInit {
     this.initControlValueChanges();
   }
 
-  public submitForm(): void {
-    if (this.formGroupControl.invalid) {
-      markAllAsDirty(this.formGroupControl);
+  ngDoCheck(): void {
+    if (this.formGroup.invalid) {
+      this.ngControl.control.setErrors({ projectFormError: true });
+    }
+
+    if (this.ngControl.control?.touched) {
+      markAllAsDirty(this.formGroup);
+      this.cdRef.markForCheck();
     }
   }
 
   public writeValue(obj: { [key: string]: string }): void {
-    this.formGroupControl.setValue(obj, { emitEvent: false });
+    this.formGroup.setValue(obj, { emitEvent: false });
     this.cdRef.detectChanges();
   }
   public registerOnChange(fn: (value: string) => void): void {
@@ -85,10 +90,9 @@ export class ProjectFormComponent implements ControlValueAccessor, OnInit {
   public onChange: (value: string) => void;
 
   private initControlValueChanges(): void {
-    this.formGroupControl.valueChanges
-      .pipe(untilDestroyed(this))
-      .subscribe(value => {
-        this.onChange(value);
-      });
+    this.formGroup.valueChanges.pipe(untilDestroyed(this)).subscribe(value => {
+      value.teamSize = Number(value.teamSize);
+      this.onChange(value);
+    });
   }
 }

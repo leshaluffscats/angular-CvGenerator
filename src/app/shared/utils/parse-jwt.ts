@@ -9,11 +9,9 @@ export function parseJwt(token: string) {
       .join(''),
   );
 
-  const parsedJwt = {
+  return {
     email: JSON.parse(jsonPayload).email,
     issuedAt: JSON.parse(jsonPayload).iat,
-    expires: JSON.parse(jsonPayload).exp,
+    expires: JSON.parse(jsonPayload).exp * 1000,
   };
-
-  return parsedJwt;
 }

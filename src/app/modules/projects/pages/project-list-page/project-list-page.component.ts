@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import {
+  EDIT_PROJECT,
+  PROJECTS,
+} from 'src/app/shared/constants/routing-paths.consts';
 import { IColumn } from 'src/app/shared/interfaces/columns.interface';
 import { IProject } from 'src/app/shared/interfaces/projects.interface';
-import { AppState } from 'src/app/store';
-import { getProjects } from 'src/app/store/projects/projects.actions';
-import { selectProjects } from 'src/app/store/projects/projects.selector';
+import { ProjectFacade } from 'src/app/store/projects/projects.facade';
 import { columns } from './consts/column.const';
 
 @Component({
@@ -18,10 +20,16 @@ export class ProjectListPageComponent implements OnInit {
   public data$: Observable<IProject[]>;
   public columns: IColumn[] = columns;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(
+    private router: Router,
+    private projectsFacade: ProjectFacade,
+  ) {}
 
   ngOnInit() {
-    this.store.dispatch(getProjects());
-    this.data$ = this.store.select(selectProjects);
+    this.data$ = this.projectsFacade.getProjects();
+  }
+
+  public navigateToEditProject(project: IProject): void {
+    this.router.navigate([PROJECTS.path, EDIT_PROJECT.path, project.id]);
   }
 }

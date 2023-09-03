@@ -8,7 +8,7 @@
     pTemplate="body"
     let-item
   >
-    <tr>
+    <tr (click)="emitRowData(item)">
       <td *ngFor="let column of columns">
         {{ item[column.fieldValue] }}
       </td>

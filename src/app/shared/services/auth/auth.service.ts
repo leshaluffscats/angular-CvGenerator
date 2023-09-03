@@ -25,6 +25,7 @@ export class AuthService {
   }
 
   public logOut(): void {
+    // todo еще обнулить токены
     this.router.navigate([AUTH.path]);
   }
 

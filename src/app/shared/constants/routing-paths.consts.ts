@@ -46,6 +46,11 @@ export const ADD_PROJECT: IRoutingPath = {
 };
 
 export const EDIT_PROJECT: IRoutingPath = {
-  path: 'edit/:id',
-  fullPath: '/edit/:id',
+  path: 'edit',
+  fullPath: '/edit',
+};
+
+export const ID_PATH: IRoutingPath = {
+  path: ':id',
+  fullPath: '/:id',
 };

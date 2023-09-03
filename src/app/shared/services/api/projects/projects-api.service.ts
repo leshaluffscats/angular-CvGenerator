@@ -18,17 +18,51 @@ export class ProjectsApiService {
     private projectService: ProjectsService,
   ) {}
 
-  public addProject(body: IProjectForm) {
-    return this.http.post(API_PROJECTS_URL, body);
+  public addProject(project: IProjectForm): Observable<IProject> {
+    project.startDate = new Date(
+      project.startDate.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'),
+    ).toISOString();
+
+    project.endDate = new Date(
+      project.endDate.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'),
+    ).toISOString();
+
+    return this.http.post<IProject>(API_PROJECTS_URL, project);
   }
 
   public getProjects(): Observable<IProject[]> {
-    return this.http.get<IProjectDto[]>(API_PROJECTS_URL).pipe(
-      map((projectsArr: IProjectDto[]) => {
-        return projectsArr.map((project: IProjectDto) =>
-          this.projectService.modifyObj(project),
-        );
-      }),
-    );
+    return this.http
+      .get<IProjectDto[]>(API_PROJECTS_URL)
+      .pipe(
+        map((projectsArr: IProjectDto[]) =>
+          this.projectService.modifyProjectsArr(projectsArr),
+        ),
+      );
+  }
+
+  public getProjectById(id: string): Observable<IProject> {
+    return this.http
+      .get<IProjectDto>(`${API_PROJECTS_URL}/${id}`)
+      .pipe(
+        map((project: IProjectDto) =>
+          this.projectService.modifyProject(project),
+        ),
+      );
+  }
+
+  public updateProject(id: string, project: IProject): Observable<IProject> {
+    project.startDate = new Date(
+      project.startDate.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'),
+    ).toISOString();
+
+    project.endDate = new Date(
+      project.endDate.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'),
+    ).toISOString();
+
+    return this.http.put<IProject>(`${API_PROJECTS_URL}/${id}`, project);
+  }
+
+  public deleteProject(id: string): Observable<IProjectDto> {
+    return this.http.delete<IProjectDto>(`${API_PROJECTS_URL}/${id}`);
   }
 }

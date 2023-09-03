@@ -8,3 +8,8 @@ export const selectProjects = createSelector(
   selectProjectsState,
   (state: IProjectsInitialState) => state.projects,
 );
+
+export const selectProject = createSelector(
+  selectProjectsState,
+  (state: IProjectsInitialState) => state.project,
+);

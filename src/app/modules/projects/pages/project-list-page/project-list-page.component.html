@@ -4,6 +4,7 @@
 >
 </p-button>
 <app-base-table
+  (rowClicked)="navigateToEditProject($event)"
   [columns]="columns"
   [data]="data$ | async"
 ></app-base-table>

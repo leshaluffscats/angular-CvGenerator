@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
+import { IProject } from '../../interfaces/projects.interface';
 
 interface IColumns {
   fieldValue: string;
@@ -18,4 +25,11 @@ interface IColumns {
 export class BaseTableComponent {
   @Input() data: unknown[];
   @Input() columns: IColumns[];
+
+  @Output() rowClicked = new EventEmitter<IProject>();
+
+  public emitRowData(item: IProject): void {
+    this.rowClicked.emit(item);
+    // прокидывать не айди а весь объект
+  }
 }

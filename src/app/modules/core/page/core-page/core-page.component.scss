@@ -12,7 +12,12 @@ main {
 
   section {
     padding: 16px;
+    height: 89vh;
     width: 100%;
-    overflow: hidden;
+
+    div {
+      height: 80vh;
+      overflow: auto;
+    }
   }
 }

@@ -9,20 +9,24 @@ import {
   providedIn: 'root',
 })
 export class ProjectsService {
-  private map(arr: INameAndId[]): string[] {
-    return arr.map(obj => obj.name);
+  constructor() {}
+
+  public modifyProjectsArr(projects: IProjectDto[]): IProject[] {
+    return projects.map(el => this.modifyProject(el));
   }
 
-  public modifyObj(project: IProjectDto): IProject {
+  public modifyProject(project: IProjectDto): IProject {
     return {
       ...project,
       startDate: new Date(project.startDate).toLocaleDateString(),
       endDate: new Date(project.endDate).toLocaleDateString(),
-      techStack: this.map(project.techStack),
-      responsibilities: this.map(project.responsibilities),
-      teamRoles: this.map(project.teamRoles),
+      techStack: this.getName(project.techStack),
+      responsibilities: this.getName(project.responsibilities),
+      teamRoles: this.getName(project.teamRoles),
     };
   }
 
-  constructor() {}
+  private getName(arr: INameAndId[]): string[] {
+    return arr.map(obj => obj.name);
+  }
 }

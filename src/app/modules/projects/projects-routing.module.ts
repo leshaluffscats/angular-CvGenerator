@@ -6,12 +6,16 @@ import { AddProjectPageComponent } from './pages/add-project-page/add-project-pa
 import {
   ADD_PROJECT,
   EDIT_PROJECT,
+  ID_PATH,
   PROJECT_LIST_PATH,
 } from 'src/app/shared/constants/routing-paths.consts';
 
 const routes: Routes = [
   { path: PROJECT_LIST_PATH.path, component: ProjectListPageComponent },
-  { path: EDIT_PROJECT.path, component: EditProjectPageComponent },
+  {
+    path: EDIT_PROJECT.path + ID_PATH.fullPath,
+    component: EditProjectPageComponent,
+  },
   { path: ADD_PROJECT.path, component: AddProjectPageComponent },
 ];
 

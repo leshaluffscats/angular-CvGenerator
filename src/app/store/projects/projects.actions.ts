@@ -13,3 +13,15 @@ export const getProjectsFromApiSuccess = createAction(
 export const getProjectsFromApiFailure = createAction(
   '[Projects list] Get projects from API failure',
 );
+
+export const getProjectById = createAction(
+  '[Project Page] Get project by id',
+  props<{ id: string }>(),
+);
+export const getProjectByIdSuccess = createAction(
+  '[Project Page] Get project by id success',
+  props<{ project: IProject }>(),
+);
+export const getProjectByIdFailure = createAction(
+  '[Project Page] Get project by id failure',
+);

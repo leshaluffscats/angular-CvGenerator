@@ -1,1 +1,17 @@
-<p>edit-project-page works!</p>
+<main>
+  <div class="form-wrapper">
+    <app-project-form [formControl]="form"></app-project-form>
+    <p-button
+      type="submit"
+      label="Edit"
+      (click)="editProject()"
+    >
+    </p-button>
+    <p-button
+      label="Delete"
+      styleClass="p-button-danger"
+      (click)="deleteProject()"
+    ></p-button>
+  </div>
+  <p>{{ form.value | json }}</p>
+</main>
