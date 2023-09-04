@@ -76,6 +76,6 @@ export class EditProjectPageComponent implements OnInit {
     this.projectsApi
       .deleteProject(this.projectId)
       .pipe(untilDestroyed(this))
-      .subscribe();
+      .subscribe(() => this.router.navigate([PROJECT_LIST_PATH.path]));
   }
 }

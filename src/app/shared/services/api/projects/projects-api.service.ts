@@ -19,14 +19,6 @@ export class ProjectsApiService {
   ) {}
 
   public addProject(project: IProjectForm): Observable<IProject> {
-    project.startDate = new Date(
-      project.startDate.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'),
-    ).toISOString();
-
-    project.endDate = new Date(
-      project.endDate.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'),
-    ).toISOString();
-
     return this.http.post<IProject>(API_PROJECTS_URL, project);
   }
 
@@ -51,14 +43,6 @@ export class ProjectsApiService {
   }
 
   public updateProject(id: string, project: IProject): Observable<IProject> {
-    project.startDate = new Date(
-      project.startDate.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'),
-    ).toISOString();
-
-    project.endDate = new Date(
-      project.endDate.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'),
-    ).toISOString();
-
     return this.http.put<IProject>(`${API_PROJECTS_URL}/${id}`, project);
   }
 

@@ -13,13 +13,14 @@ export interface IProject {
   id: number;
   projectName: string;
   description: string;
-  startDate: string;
-  endDate: string;
+  startDate: string | Date;
+  endDate: string | Date;
   teamSize: number;
   techStack: string[];
   responsibilities: string[];
   teamRoles: string[];
 }
+
 export interface IProjectDto {
   id: number;
   projectName: string;

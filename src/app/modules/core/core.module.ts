@@ -15,6 +15,5 @@ import { CorePageComponent } from './page/core-page/core-page.component';
     CorePageComponent,
   ],
   imports: [CommonModule, CoreRoutingModule, ToggleButtonModule],
-  // exports: [CorePageComponent],
 })
 export class CoreModule {}

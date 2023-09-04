@@ -12,14 +12,21 @@ export class ProjectsService {
   constructor() {}
 
   public modifyProjectsArr(projects: IProjectDto[]): IProject[] {
-    return projects.map(el => this.modifyProject(el));
+    return projects.map(project => ({
+      ...project,
+      startDate: new Date(project.startDate).toLocaleDateString(),
+      endDate: new Date(project.endDate).toLocaleDateString(),
+      techStack: this.getName(project.techStack),
+      responsibilities: this.getName(project.responsibilities),
+      teamRoles: this.getName(project.teamRoles),
+    }));
   }
 
   public modifyProject(project: IProjectDto): IProject {
     return {
       ...project,
-      startDate: new Date(project.startDate).toLocaleDateString(),
-      endDate: new Date(project.endDate).toLocaleDateString(),
+      startDate: new Date(project.startDate),
+      endDate: new Date(project.endDate),
       techStack: this.getName(project.techStack),
       responsibilities: this.getName(project.responsibilities),
       teamRoles: this.getName(project.teamRoles),

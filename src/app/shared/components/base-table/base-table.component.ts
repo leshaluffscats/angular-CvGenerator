@@ -30,6 +30,5 @@ export class BaseTableComponent {
 
   public emitRowData(item: IProject): void {
     this.rowClicked.emit(item);
-    // прокидывать не айди а весь объект
   }
 }

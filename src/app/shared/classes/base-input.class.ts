@@ -8,8 +8,8 @@ export class BaseInputClass implements ControlValueAccessor, OnInit {
   public control: FormControl = new FormControl('');
 
   constructor(
-    private ngControl: NgControl,
-    private readonly cdRef: ChangeDetectorRef,
+    protected readonly cdRef: ChangeDetectorRef,
+    protected ngControl: NgControl,
   ) {
     this.ngControl.valueAccessor = this;
     if (this.ngControl.control?.parent) {
