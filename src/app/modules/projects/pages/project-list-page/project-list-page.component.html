@@ -1,10 +1,12 @@
-<p-button
-  routerLink="add"
-  label="Add Project"
->
-</p-button>
-<app-base-table
-  (rowClicked)="navigateToEditProject($event)"
-  [columns]="columns"
-  [data]="data$ | async"
-></app-base-table>
+<main>
+  <p-button
+    routerLink="add"
+    label="Add new project"
+  >
+  </p-button>
+  <app-base-table
+    (rowClicked)="navigateToEditProject($event)"
+    [columns]="columns"
+    [data]="data$ | async"
+  ></app-base-table>
+</main>

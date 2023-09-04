@@ -11,6 +11,10 @@ import { changeTheme } from './common.actions';
 export class CommonFacade {
   constructor(private store: Store<AppState>) {}
 
+  public getTheme(): Observable<boolean> {
+    return this.store.select(selectTheme);
+  }
+
   public toggleTheme(): Observable<boolean> {
     this.store.dispatch(changeTheme());
     return this.store.select(selectTheme);

@@ -1,3 +1,6 @@
+@import '../../../../../assets/styles/mixins.scss';
+@import '../../../../../assets/styles/variables.scss';
+
 :host {
   display: block;
   width: 100%;
@@ -8,7 +11,17 @@ main {
   height: 100%;
 
   .form-wrapper {
-    padding: 0 30px;
+    padding-right: 30px;
     height: 70%;
+    position: relative;
+
+    div {
+      position: absolute;
+      right: 120px;
+      margin-top: 15px;
+      p-button {
+        margin-right: 10px;
+      }
+    }
   }
 }
