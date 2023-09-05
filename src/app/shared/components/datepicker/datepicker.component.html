@@ -1,14 +1,12 @@
-<label>
-  <p-calendar
-    [formControl]="control"
-    [placeholder]="placeholder"
-    [showIcon]="true"
-    dateFormat="dd.mm.yy"
-  ></p-calendar>
-  <small
-    class="p-error"
-    *ngIf="control.invalid && control.dirty"
-  >
-    {{ control.errors | getErrorMessage | translate }}
-  </small>
-</label>
+<p-calendar
+  [formControl]="control"
+  [placeholder]="placeholder"
+  [showIcon]="true"
+  dateFormat="dd.mm.yy"
+></p-calendar>
+<small
+  class="p-error"
+  *ngIf="control.invalid && control.dirty"
+>
+  {{ control.errors | getErrorMessage | translate }}
+</small>

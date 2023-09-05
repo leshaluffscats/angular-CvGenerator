@@ -6,6 +6,7 @@ import { PageTitlesComponent } from './components/page-titles/page-titles.compon
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { CorePageComponent } from './page/core-page/core-page.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,11 @@ import { CorePageComponent } from './page/core-page/core-page.component';
     PageTitlesComponent,
     CorePageComponent,
   ],
-  imports: [CommonModule, CoreRoutingModule, ToggleButtonModule],
+  imports: [
+    CommonModule,
+    CoreRoutingModule,
+    ToggleButtonModule,
+    TranslateModule,
+  ],
 })
 export class CoreModule {}

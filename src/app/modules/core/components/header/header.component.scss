@@ -11,6 +11,9 @@ header {
   justify-content: space-between;
 
   div {
+    @include flex;
+    justify-content: space-between;
+    width: 7%;
     button {
       border: none;
       background: transparent;

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { take } from 'rxjs';
 import { ThemeService } from 'src/app/shared/services/theme/theme.service';
 import { CommonFacade } from 'src/app/store/common/common.facade';
@@ -14,6 +15,7 @@ export class HeaderComponent {
   constructor(
     private commonFacade: CommonFacade,
     private themeService: ThemeService,
+    private translateService: TranslateService,
   ) {}
 
   public toggleTheme(): void {
@@ -28,5 +30,12 @@ export class HeaderComponent {
           this.themeService.switchTheme('light-blue');
         }
       });
+  }
+
+  public changeLanguage(): void {
+    console.log(this.translateService.currentLang);
+    this.translateService.use(
+      this.translateService.currentLang === 'en' ? 'ru' : 'en',
+    );
   }
 }

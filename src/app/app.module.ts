@@ -47,6 +47,6 @@ registerLocaleData(en);
 })
 export class AppModule {
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('ru');
+    this.translate.setDefaultLang('en');
   }
 }

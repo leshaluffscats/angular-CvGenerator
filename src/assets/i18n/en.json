@@ -4,5 +4,13 @@
       "REQUIRED": "This field is required",
       "MIN_LENGTH": "Not enought symbols"
     }
+  },
+  "BUTTONS": {
+    "ADD_NEW_PROJECT": "Add new project",
+    "ADD_NEW_EMPLOYEE": "Add new employee"
+  },
+  "SIDEBAR": {
+    "PROJECTS": "Projects",
+    "EMPLOYEES": "Employees"
   }
 }

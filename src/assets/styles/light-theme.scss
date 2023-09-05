@@ -1,8 +1,16 @@
 @import '../../../node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css';
+@import './variables.scss';
+
 .p-datepicker table td {
   padding: 10px;
 }
 .p-datepicker table td > span {
   width: 30px;
   height: 30px;
+}
+
+// selected tab
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: $blue;
+  border-bottom: 2px solid $blue;
 }

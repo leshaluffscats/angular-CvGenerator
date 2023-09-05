@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { Observable } from 'rxjs';
 import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
-import {
-  // IEmployeesMock,
-  employeesMockData,
-} from '../../../../shared/constants/employeesMockData';
+import { IEmployeeData } from '../../interfaces/employees.interface';
+import { columns } from './constants/employees.const';
 
+@UntilDestroy()
 @Component({
   selector: 'app-employees-list-page',
   templateUrl: './employees-list-page.component.html',
@@ -12,34 +13,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesListPageComponent implements OnInit {
-  public columns = [
-    {
-      fieldValue: 'firstName',
-      fieldCaption: 'First name',
-    },
-    {
-      fieldValue: 'lastName',
-      fieldCaption: 'Last name',
-    },
-    {
-      fieldValue: 'id',
-      fieldCaption: 'id',
-    },
-    {
-      fieldValue: 'experience',
-      fieldCaption: 'experience',
-    },
-    {
-      fieldValue: 'technology',
-      fieldCaption: 'technology',
-    },
-  ];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public employeesData: any[] = employeesMockData;
+  public columns = columns;
+  public employeesData$: Observable<IEmployeeData[]>;
 
   constructor(private employeesService: EmployeesApiService) {}
 
   ngOnInit(): void {
-    this.employeesService.getEmployees().subscribe();
+    this.employeesData$ = this.employeesService.getEmployees();
   }
 }

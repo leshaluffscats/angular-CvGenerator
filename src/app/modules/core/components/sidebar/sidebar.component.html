@@ -4,14 +4,17 @@
     routerLinkActive="active"
   >
     <i class="pi pi-user"></i>
-    <ng-template [ngIf]="isOpened">Employees</ng-template>
+    <ng-template [ngIf]="isOpened">
+      {{ 'SIDEBAR.EMPLOYEES' | translate }}
+    </ng-template>
   </a>
   <a
     routerLink="/projects"
     routerLinkActive="active"
   >
     <i class="pi pi-briefcase"></i>
-    <ng-template [ngIf]="isOpened">Projects</ng-template>
+    {{ 'SIDEBAR.PROJECTS' | translate }}
+    <ng-template [ngIf]="isOpened"></ng-template>
   </a>
   <button (click)="toggleSidebar()">
     <span
