@@ -40,7 +40,6 @@ export class EmployeeFormComponent
       email: ['', Validators.required],
       specialization: ['', Validators.required],
       department: ['', Validators.required],
-      skills: [''],
     });
   }
 

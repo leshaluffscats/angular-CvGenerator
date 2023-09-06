@@ -3,7 +3,7 @@
 
   <p>Real info component {{ employeeForm.value | json }}</p>
   <p-button
-    label="add"
+    [label]="'BUTTONS.ADD' | translate"
     (click)="addEmployee()"
   ></p-button>
 </div>

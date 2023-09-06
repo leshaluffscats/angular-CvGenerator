@@ -1,26 +1,22 @@
 <form [formGroup]="form">
   <app-input
     formControlName="firstName"
-    placeholder="First name"
+    [placeholder]="'PLACEHOLDERS.FIRST_NAME' | translate"
   ></app-input>
   <app-input
     formControlName="lastName"
-    placeholder="Last name"
+    [placeholder]="'PLACEHOLDERS.LAST_NAME' | translate"
   ></app-input>
   <app-input
     formControlName="email"
-    placeholder="Email"
+    [placeholder]="'PLACEHOLDERS.EMAIL' | translate"
   ></app-input>
   <app-input
     formControlName="specialization"
-    placeholder="Specialization"
+    [placeholder]="'PLACEHOLDERS.SPECIALIZATION' | translate"
   ></app-input>
   <app-input
     formControlName="department"
-    placeholder="Department"
-  ></app-input>
-  <app-input
-    formControlName="skills"
-    placeholder="Skills"
+    [placeholder]="'PLACEHOLDERS.DEPARTMENT' | translate"
   ></app-input>
 </form>

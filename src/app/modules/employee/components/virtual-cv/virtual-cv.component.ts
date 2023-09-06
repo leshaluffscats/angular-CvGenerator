@@ -14,7 +14,6 @@ export class VirtualCvComponent {
     email: '',
     specialization: '',
     department: '',
-    skills: '',
   });
 
   constructor() {}

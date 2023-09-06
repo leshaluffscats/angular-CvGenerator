@@ -3,7 +3,7 @@
     <app-project-form [formControl]="form"></app-project-form>
     <p-button
       type="submit"
-      label="Add"
+      [label]="'BUTTONS.ADD' | translate"
       (click)="addProject()"
     >
     </p-button>

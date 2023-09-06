@@ -2,44 +2,40 @@
   <div>
     <app-input
       formControlName="projectName"
-      placeholder="name"
+      [placeholder]="'PLACEHOLDERS.PROJECT_NAME' | translate"
     ></app-input>
     <app-datepicker
       formControlName="startDate"
-      placeholder="start date"
+      [placeholder]="'PLACEHOLDERS.START_DATE' | translate"
     ></app-datepicker>
     <app-datepicker
       formControlName="endDate"
-      placeholder="end date"
+      [placeholder]="'PLACEHOLDERS.END_DATE' | translate"
     ></app-datepicker>
   </div>
   <div>
     <app-input
       type="number"
       formControlName="teamSize"
-      placeholder="team size"
+      [placeholder]="'PLACEHOLDERS.TEAM_SIZE' | translate"
     ></app-input>
     <app-chips
       formControlName="techStack"
-      placeholder="Tech stack"
+      [placeholder]="'PLACEHOLDERS.TECH_STACK' | translate"
     ></app-chips>
     <app-chips
       formControlName="teamRoles"
-      placeholder="Roles"
+      [placeholder]="'PLACEHOLDERS.ROLES' | translate"
     ></app-chips>
   </div>
   <div>
     <app-textarea
       formControlName="description"
-      placeholder="description"
+      [placeholder]="'PLACEHOLDERS.DESCRIPTION' | translate"
     ></app-textarea>
-    <!-- <app-textarea
-        formControlName="responsibilitiesControl"
-        placeholder="responsibilities"
-        ></app-textarea> -->
     <app-chips
       formControlName="responsibilities"
-      placeholder="responsibilities"
+      [placeholder]="'PLACEHOLDERS.RESPONSIBILITIES' | translate"
     ></app-chips>
   </div>
 </form>

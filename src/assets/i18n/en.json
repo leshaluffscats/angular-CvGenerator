@@ -7,10 +7,26 @@
   },
   "BUTTONS": {
     "ADD_NEW_PROJECT": "Add new project",
-    "ADD_NEW_EMPLOYEE": "Add new employee"
+    "ADD_NEW_EMPLOYEE": "Add new employee",
+    "ADD": "Add"
   },
   "SIDEBAR": {
     "PROJECTS": "Projects",
     "EMPLOYEES": "Employees"
+  },
+  "PLACEHOLDERS": {
+    "PROJECT_NAME": "Project name",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "DESCRIPTION": "Description",
+    "SPECIALIZATION": "Specialization",
+    "DEPARTMENT": "Department",
+    "EMAIL": "Email",
+    "RESPONSIBILITIES": "Responsibilities",
+    "ROLES": "Roles",
+    "TEAM_SIZE": "Team size",
+    "TECH_STACK": "Tech stack",
+    "START_DATE": "Start date",
+    "END_DATE": "End date"
   }
 }

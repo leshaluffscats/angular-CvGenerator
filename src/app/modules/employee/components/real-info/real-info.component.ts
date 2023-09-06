@@ -19,7 +19,6 @@ export class RealInfoComponent {
     email: '',
     specialization: '',
     department: '',
-    skills: '',
   });
 
   constructor(

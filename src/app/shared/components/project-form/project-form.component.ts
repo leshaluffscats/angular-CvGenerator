@@ -21,6 +21,7 @@ import { ChipsComponent } from '../chips/chips.component';
 import { DatepickerComponent } from '../datepicker/datepicker.component';
 import { InputComponent } from '../input/input.component';
 import { TextareaComponent } from '../textarea/textarea.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @UntilDestroy()
 @Component({
@@ -34,6 +35,7 @@ import { TextareaComponent } from '../textarea/textarea.component';
     MessageModule,
     TextareaComponent,
     ChipsComponent,
+    TranslateModule,
   ],
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.scss'],
