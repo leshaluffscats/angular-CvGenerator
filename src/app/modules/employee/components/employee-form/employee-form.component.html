@@ -1,1 +1,26 @@
-<p>employee-form works!</p>
+<form [formGroup]="form">
+  <app-input
+    formControlName="firstName"
+    placeholder="First name"
+  ></app-input>
+  <app-input
+    formControlName="lastName"
+    placeholder="Last name"
+  ></app-input>
+  <app-input
+    formControlName="email"
+    placeholder="Email"
+  ></app-input>
+  <app-input
+    formControlName="specialization"
+    placeholder="Specialization"
+  ></app-input>
+  <app-input
+    formControlName="department"
+    placeholder="Department"
+  ></app-input>
+  <app-input
+    formControlName="skills"
+    placeholder="Skills"
+  ></app-input>
+</form>

@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DoCheck,
   OnInit,
 } from '@angular/core';
 import {
@@ -31,7 +32,6 @@ import { TextareaComponent } from '../textarea/textarea.component';
     InputComponent,
     ReactiveFormsModule,
     MessageModule,
-
     TextareaComponent,
     ChipsComponent,
   ],
@@ -40,7 +40,9 @@ import { TextareaComponent } from '../textarea/textarea.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
-export class ProjectFormComponent implements ControlValueAccessor, OnInit {
+export class ProjectFormComponent
+  implements ControlValueAccessor, OnInit, DoCheck
+{
   public formGroup: FormGroup;
 
   constructor(

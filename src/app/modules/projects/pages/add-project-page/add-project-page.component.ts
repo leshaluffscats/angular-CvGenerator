@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { PROJECT_LIST_PATH } from 'src/app/shared/constants/routing-paths.consts';
+import { PROJECTS } from 'src/app/shared/constants/routing-paths.consts';
 import { ProjectsApiService } from 'src/app/shared/services/api/projects/projects-api.service';
 
 @UntilDestroy()
@@ -38,6 +38,6 @@ export class AddProjectPageComponent {
     this.projectsApi
       .addProject(this.form.getRawValue())
       .pipe(untilDestroyed(this))
-      .subscribe(() => this.router.navigate([PROJECT_LIST_PATH.path]));
+      .subscribe(() => this.router.navigate([PROJECTS.path]));
   }
 }

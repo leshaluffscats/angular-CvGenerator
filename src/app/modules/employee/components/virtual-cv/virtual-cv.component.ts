@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-virtual-cv',
@@ -6,4 +7,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./virtual-cv.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VirtualCvComponent {}
+export class VirtualCvComponent {
+  public employeeForm: FormControl = new FormControl({
+    firstName: '',
+    lastName: '',
+    email: '',
+    specialization: '',
+    department: '',
+    skills: '',
+  });
+
+  constructor() {}
+}

@@ -5,7 +5,7 @@ import { Observable, map } from 'rxjs';
 import {
   IEmployeeData,
   IEmployeeDto,
-} from 'src/app/modules/employee/interfaces/employees.interface';
+} from 'src/app/shared/interfaces/employees.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +23,8 @@ export class EmployeesApiService {
         }));
       }),
     );
+  }
+  public addEmployee(employee: IEmployeeData): Observable<IEmployeeDto> {
+    return this.http.post<IEmployeeDto>(API_EMPLOYEES_URL, employee);
   }
 }

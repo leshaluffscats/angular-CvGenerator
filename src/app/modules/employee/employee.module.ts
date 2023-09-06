@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { BaseTableComponent } from 'src/app/shared/components/base-table/base-table.component';
+import { InputComponent } from 'src/app/shared/components/input/input.component';
 import { ProjectFormComponent } from 'src/app/shared/components/project-form/project-form.component';
 import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
 import { RealInfoComponent } from './components/real-info/real-info.component';
@@ -33,6 +35,8 @@ import { EmployeesListPageComponent } from './pages/employees-list-page/employee
     TranslateModule,
     TabViewModule,
     ProjectFormComponent,
+    ReactiveFormsModule,
+    InputComponent,
   ],
 })
 export class EmployeeModule {}

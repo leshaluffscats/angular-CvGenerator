@@ -13,8 +13,10 @@
     routerLinkActive="active"
   >
     <i class="pi pi-briefcase"></i>
-    {{ 'SIDEBAR.PROJECTS' | translate }}
-    <ng-template [ngIf]="isOpened"></ng-template>
+
+    <ng-template [ngIf]="isOpened">
+      {{ 'SIDEBAR.PROJECTS' | translate }}</ng-template
+    >
   </a>
   <button (click)="toggleSidebar()">
     <span

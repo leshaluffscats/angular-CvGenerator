@@ -1,1 +1,9 @@
-<p>real-info works!</p>
+<div>
+  <app-employee-form [formControl]="employeeForm"></app-employee-form>
+
+  <p>Real info component {{ employeeForm.value | json }}</p>
+  <p-button
+    label="add"
+    (click)="addEmployee()"
+  ></p-button>
+</div>
