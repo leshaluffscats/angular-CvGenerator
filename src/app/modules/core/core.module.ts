@@ -7,6 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { CorePageComponent } from './page/core-page/core-page.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CoreRoutingModule,
     ToggleButtonModule,
     TranslateModule,
+    ButtonModule,
   ],
 })
 export class CoreModule {}

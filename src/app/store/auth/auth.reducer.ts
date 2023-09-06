@@ -52,4 +52,11 @@ export const authReducer = createReducer(
     isLoading: false,
     error: error,
   })),
+  on(authActions.removeToken, state => ({
+    ...state,
+    accessToken: null,
+    expires: null,
+    isLoading: false,
+    error: null,
+  })),
 );

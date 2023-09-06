@@ -6,6 +6,7 @@ import {
   getAccessToken,
   refreshToken,
   refreshTokenSuccess,
+  removeToken,
 } from './auth.actions';
 import { selectAccessToken, selectAuth } from './auth.selector';
 
@@ -28,5 +29,9 @@ export class AuthFacade {
 
   public updateToken(accessToken: string): void {
     this.store.dispatch(refreshTokenSuccess({ accessToken }));
+  }
+
+  public removeToken(): void {
+    this.store.dispatch(removeToken());
   }
 }

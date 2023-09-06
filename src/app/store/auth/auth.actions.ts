@@ -26,3 +26,5 @@ export const getAccessTokenFailure = createAction(
   '[Auth] Get access token failure',
   props<{ error: IError }>(),
 );
+
+export const removeToken = createAction('[Auth] Remove token');

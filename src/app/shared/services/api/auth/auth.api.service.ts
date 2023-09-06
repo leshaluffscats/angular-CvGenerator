@@ -21,4 +21,10 @@ export class AuthApiService {
       withCredentials: true,
     });
   }
+
+  public logout(): Observable<void> {
+    return this.http.get<void>(`${API_AUTH_URL}/logout`, {
+      withCredentials: true,
+    });
+  }
 }
