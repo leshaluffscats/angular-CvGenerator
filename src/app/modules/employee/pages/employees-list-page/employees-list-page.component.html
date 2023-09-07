@@ -4,6 +4,7 @@
     routerLink="add"
   ></p-button>
   <app-base-table
+    (rowClicked)="navigateToEmployee($event)"
     [columns]="columns"
     [data]="employeesData$ | async"
   ></app-base-table>

@@ -31,8 +31,8 @@ export const ADD_EMPLOYEE: IRoutingPath = {
 };
 
 export const EDIT_EMPLOYEE: IRoutingPath = {
-  path: 'edit/:id',
-  fullPath: '/edit/:id',
+  path: 'edit',
+  fullPath: '/edit',
 };
 
 export const PROJECTS: IRoutingPath = {

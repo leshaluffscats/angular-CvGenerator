@@ -1,9 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
-import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
-import { columns } from './constants/employees.const';
 import { IEmployeeData } from 'src/app/shared/interfaces/employees.interface';
+import { EmployeesFacade } from 'src/app/store/employees/employees.facade';
+import { columns } from './constants/employees.const';
+import {
+  EDIT_EMPLOYEE,
+  EMPLOYEES,
+} from 'src/app/shared/constants/routing-paths.consts';
 
 @UntilDestroy()
 @Component({
@@ -16,9 +21,17 @@ export class EmployeesListPageComponent implements OnInit {
   public columns = columns;
   public employeesData$: Observable<IEmployeeData[]>;
 
-  constructor(private employeesService: EmployeesApiService) {}
+  constructor(
+    private employeesFacade: EmployeesFacade,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
-    this.employeesData$ = this.employeesService.getEmployees();
+    this.employeesData$ = this.employeesFacade.getEmployees();
+  }
+
+  public navigateToEmployee(employee: IEmployeeData): void {
+    console.log(EMPLOYEES.path, EDIT_EMPLOYEE.path, employee.id);
+    this.router.navigate([EMPLOYEES.path, EDIT_EMPLOYEE.path, employee.id]);
   }
 }

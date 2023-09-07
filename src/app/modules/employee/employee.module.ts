@@ -14,7 +14,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { VirtualCvComponent } from './components/virtual-cv/virtual-cv.component';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { AddEmployeePageComponent } from './pages/add-employee-page/add-employee-page.component';
-import { EmployeeDataPageComponent } from './pages/employee-data-page/employee-data-page.component';
+import { EditEmployeePageComponent } from './pages/edit-employee-page/edit-employee-page.component';
 import { EmployeesListPageComponent } from './pages/employees-list-page/employees-list-page.component';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { EmployeesListPageComponent } from './pages/employees-list-page/employee
     RealInfoComponent,
     VirtualCvComponent,
     EmployeeFormComponent,
-    EmployeeDataPageComponent,
+    EditEmployeePageComponent,
     AddEmployeePageComponent,
     TabsComponent,
   ],

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,7 +6,6 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { IProject } from '../../interfaces/projects.interface';
 
@@ -26,7 +26,7 @@ export class BaseTableComponent {
   @Input() data: unknown[];
   @Input() columns: IColumns[];
 
-  @Output() rowClicked = new EventEmitter<IProject>();
+  @Output() rowClicked = new EventEmitter();
 
   public emitRowData(item: IProject): void {
     this.rowClicked.emit(item);

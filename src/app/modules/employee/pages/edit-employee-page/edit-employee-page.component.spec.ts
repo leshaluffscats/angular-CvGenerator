@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmployeeDataPageComponent } from './employee-data-page.component';
+import { EmployeeDataPageComponent } from './edit-employee-page.component';
 
 describe('EmployeeDataPageComponent', () => {
   let component: EmployeeDataPageComponent;
