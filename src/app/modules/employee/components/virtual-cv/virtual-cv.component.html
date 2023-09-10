@@ -1,6 +1,14 @@
 <main>
-  <div class="sidebar"></div>
+  <app-sidebar></app-sidebar>
   <div class="right-side">
     <app-employee-form [formControl]="employeeForm"></app-employee-form>
+    <div class="projects">
+      <p-button label="Add project"></p-button>
+      <p-accordion [activeIndex]="0">
+        <p-accordionTab header="Project">
+          <app-project-form [formControl]="projectForm"></app-project-form>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
   </div>
 </main>

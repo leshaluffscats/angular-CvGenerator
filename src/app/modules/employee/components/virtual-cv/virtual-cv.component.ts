@@ -16,5 +16,16 @@ export class VirtualCvComponent {
     department: '',
   });
 
+  public projectForm = new FormControl({
+    projectName: '',
+    startDate: '',
+    endDate: '',
+    teamSize: null,
+    techStack: [],
+    description: '',
+    responsibilities: [],
+    teamRoles: [],
+  });
+
   constructor() {}
 }

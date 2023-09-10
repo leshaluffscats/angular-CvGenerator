@@ -30,7 +30,7 @@ export class EmployeesListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.commonFacade.pushToBreadCrumbs([
-      { label: 'Employess', routerLink: EMPLOYEES.path },
+      { label: 'Employees', routerLink: EMPLOYEES.path },
     ]);
 
     this.employeesData$ = this.employeesFacade.getEmployees();

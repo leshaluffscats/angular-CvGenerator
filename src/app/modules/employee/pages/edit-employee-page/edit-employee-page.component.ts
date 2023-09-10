@@ -16,7 +16,7 @@ export class EditEmployeePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.commonFacade.pushToBreadCrumbs([
-      { label: 'Employess', routerLink: EMPLOYEES.path },
+      { label: 'Employees', routerLink: EMPLOYEES.path },
       { label: 'Edit', routerLink: EMPLOYEES.path + EDIT_EMPLOYEE.fullPath },
     ]);
   }
