@@ -3,9 +3,14 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { skip, switchMap } from 'rxjs';
-import { PROJECT_LIST_PATH } from 'src/app/shared/constants/routing-paths.consts';
+import {
+  EDIT_PROJECT,
+  PROJECTS,
+  PROJECT_LIST_PATH,
+} from 'src/app/shared/constants/routing-paths.consts';
 import { IProject } from 'src/app/shared/interfaces/projects.interface';
 import { ProjectsApiService } from 'src/app/shared/services/api/projects/projects-api.service';
+import { CommonFacade } from 'src/app/store/common/common.facade';
 import { ProjectFacade } from 'src/app/store/projects/projects.facade';
 
 @UntilDestroy()
@@ -34,9 +39,15 @@ export class EditProjectPageComponent implements OnInit {
     private projectsFacade: ProjectFacade,
     private projectsApi: ProjectsApiService,
     private router: Router,
+    private commonFacade: CommonFacade,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.commonFacade.pushToBreadCrumbs([
+      { label: 'Projects', routerLink: PROJECTS.path },
+      { label: 'Edit', routerLink: PROJECTS.path + EDIT_PROJECT.fullPath },
+    ]);
+
     this.activatedRoute.paramMap
       .pipe(
         switchMap((params: ParamMap) => {

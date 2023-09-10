@@ -1,8 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import * as commonActions from './common.actions';
+import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 
 export interface ICommonInitialState {
-  breadcrumbs: string[];
+  breadcrumbs: IBreadCrumb[];
   isDark: boolean;
 }
 
@@ -16,5 +17,10 @@ export const commonReducer = createReducer(
   on(commonActions.changeTheme, state => ({
     ...state,
     isDark: !state.isDark,
+  })),
+
+  on(commonActions.pushToBreadCrumbs, (state, { data }) => ({
+    ...state,
+    breadcrumbs: data,
   })),
 );

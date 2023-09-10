@@ -9,7 +9,6 @@ import { BaseTableComponent } from 'src/app/shared/components/base-table/base-ta
 import { InputComponent } from 'src/app/shared/components/input/input.component';
 import { ProjectFormComponent } from 'src/app/shared/components/project-form/project-form.component';
 import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
-import { RealInfoComponent } from './components/real-info/real-info.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { VirtualCvComponent } from './components/virtual-cv/virtual-cv.component';
 import { EmployeeRoutingModule } from './employee-routing.module';
@@ -20,7 +19,7 @@ import { EmployeesListPageComponent } from './pages/employees-list-page/employee
 @NgModule({
   declarations: [
     EmployeesListPageComponent,
-    RealInfoComponent,
+
     VirtualCvComponent,
     EmployeeFormComponent,
     EditEmployeePageComponent,

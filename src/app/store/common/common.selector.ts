@@ -8,3 +8,8 @@ export const selectTheme = createSelector(
   selectCommonState,
   (state: ICommonInitialState) => state.isDark,
 );
+
+export const selectBreadCrumbs = createSelector(
+  selectCommonState,
+  (state: ICommonInitialState) => state.breadcrumbs,
+);

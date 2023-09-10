@@ -7,6 +7,7 @@ import {
 } from 'src/app/shared/constants/routing-paths.consts';
 import { IColumn } from 'src/app/shared/interfaces/columns.interface';
 import { IProject } from 'src/app/shared/interfaces/projects.interface';
+import { CommonFacade } from 'src/app/store/common/common.facade';
 import { ProjectFacade } from 'src/app/store/projects/projects.facade';
 import { columns } from './consts/column.const';
 
@@ -23,10 +24,14 @@ export class ProjectListPageComponent implements OnInit {
   constructor(
     private router: Router,
     private projectsFacade: ProjectFacade,
+    private commonFacade: CommonFacade,
   ) {}
 
   ngOnInit() {
     this.data$ = this.projectsFacade.getProjects();
+    this.commonFacade.pushToBreadCrumbs([
+      { label: 'Projects', routerLink: PROJECTS.path },
+    ]);
   }
 
   public navigateToEditProject(project: IProject): void {

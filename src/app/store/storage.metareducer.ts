@@ -7,6 +7,7 @@ import { LocalStorageService } from '../shared/services/local-storage/local-stor
 export function storageMetaReducer(
   reducer: ActionReducer<any>,
 ): ActionReducer<any> {
+  //ActionReducer это функция которая принимает state и action  возвращает state
   const ls = inject(LocalStorageService);
 
   let onInit = true;
@@ -15,11 +16,12 @@ export function storageMetaReducer(
     const nextState = reducer(state, action);
 
     if (onInit) {
+      // При перезагрузке мы достаем state из localStorage и сохраняем его в state ngRx
       onInit = false;
       const savedState = ls.getItem('auth');
       return merge(nextState, savedState);
     }
-
+    // из state берем auth и устанавливаем в localStorage
     const stateToSave = pick(nextState, ['auth']);
     ls.setItem('auth', stateToSave);
     return nextState;
