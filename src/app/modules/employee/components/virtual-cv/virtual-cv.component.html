@@ -1,14 +1,39 @@
 <main>
   <app-sidebar></app-sidebar>
   <div class="right-side">
-    <app-employee-form [formControl]="employeeForm"></app-employee-form>
-    <div class="projects">
-      <p-button label="Add project"></p-button>
-      <p-accordion [activeIndex]="0">
-        <p-accordionTab header="Project">
-          <app-project-form [formControl]="projectForm"></app-project-form>
-        </p-accordionTab>
-      </p-accordion>
-    </div>
+    <form [formGroup]="form">
+      <app-employee-form formControlName="employeeForm"></app-employee-form>
+
+      <div
+        class="projects"
+        formArrayName="projectForms"
+      >
+        <div class="selectProjects">
+          <app-select
+            [formControl]="selectProject"
+            [options]="projects"
+          ></app-select>
+          <p-button
+            label="Add project"
+            (click)="addProject()"
+          ></p-button>
+        </div>
+
+        <p-accordion [activeIndex]="0">
+          <p-accordionTab
+            *ngFor="let projectForm of projectForms.controls; let i = index"
+            [header]="'Project ' + (i + 1)"
+          >
+            <ng-template pTemplate="header">
+              <i
+                class="pi pi-trash mr-2"
+                (click)="deleteProject(i)"
+              ></i>
+            </ng-template>
+            <app-project-form [formControlName]="i"></app-project-form>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </form>
   </div>
 </main>

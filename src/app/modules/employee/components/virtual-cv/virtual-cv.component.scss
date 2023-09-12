@@ -14,8 +14,22 @@ main {
     @include flex;
     flex-direction: column;
     gap: 15px;
+
+    .selectProjects {
+      @include flex;
+      justify-content: flex-end;
+      width: 100%;
+      app-select {
+        margin-right: 40px;
+        width: 83%;
+      }
+    }
+
     p-button {
       align-self: flex-end;
+    }
+    app-project-form {
+      height: 350px;
     }
   }
 

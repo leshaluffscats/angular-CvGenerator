@@ -19,6 +19,7 @@ export const commonReducer = createReducer(
     isDark: !state.isDark,
   })),
 
+  // todo переименовать дату
   on(commonActions.pushToBreadCrumbs, (state, { data }) => ({
     ...state,
     breadcrumbs: data,

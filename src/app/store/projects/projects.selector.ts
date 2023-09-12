@@ -12,4 +12,5 @@ export const selectProjects = createSelector(
 export const selectProject = createSelector(
   selectProjectsState,
   (state: IProjectsInitialState) => state.project,
+  // todo посмотреть в документации про селекторы с параметрами
 );

@@ -1,6 +1,7 @@
 import { AuthEffects } from './auth/auth.effects';
 import { IAuthInitialState, authReducer } from './auth/auth.reducer';
 import { ICommonInitialState, commonReducer } from './common/common.reducer';
+import { ICvsInitialState, cvsReducer } from './cvs/cvs.reducer';
 import { EmployeesEffects } from './employees/employees.effects';
 import {
   IEmployeeInitialState,
@@ -17,6 +18,7 @@ export interface AppState {
   projects: IProjectsInitialState;
   common: ICommonInitialState;
   employees: IEmployeeInitialState;
+  cvs: ICvsInitialState;
 }
 
 export const reducers = {
@@ -24,6 +26,7 @@ export const reducers = {
   projects: projectsReducer,
   common: commonReducer,
   employees: employeesReducer,
+  cvs: cvsReducer,
 };
 
 export const effects = [AuthEffects, ProjectsEffects, EmployeesEffects];

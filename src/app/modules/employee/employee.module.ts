@@ -17,6 +17,7 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { AddEmployeePageComponent } from './pages/add-employee-page/add-employee-page.component';
 import { EditEmployeePageComponent } from './pages/edit-employee-page/edit-employee-page.component';
 import { EmployeesListPageComponent } from './pages/employees-list-page/employees-list-page.component';
+import { SelectComponent } from 'src/app/shared/components/select/select.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { EmployeesListPageComponent } from './pages/employees-list-page/employee
     ProjectFormComponent,
     ReactiveFormsModule,
     InputComponent,
+    SelectComponent,
   ],
 })
 export class EmployeeModule {}
