@@ -12,6 +12,7 @@ import { InputComponent } from 'src/app/shared/components/input/input.component'
 import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
 import { BaseTableComponent } from 'src/app/shared/components/base-table/base-table.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { TranslateModule } from '@ngx-translate/core';
     DatepickerComponent,
     BaseTableComponent,
     TranslateModule,
+    ProgressSpinnerModule,
   ],
-  // exports: [ProjectListPageComponent],
 })
 export class ProjectsModule {}

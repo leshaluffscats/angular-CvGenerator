@@ -28,10 +28,10 @@ export class BaseInputClass implements ControlValueAccessor, OnInit {
     }
     if (this.ngControl.control?.dirty) {
       this.control.markAsDirty();
-      this.cdRef.markForCheck();
     } else {
       this.control.markAsPristine();
     }
+    this.cdRef.markForCheck();
   }
 
   public writeValue(value: string): void {

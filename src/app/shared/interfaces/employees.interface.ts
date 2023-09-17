@@ -6,7 +6,7 @@ export interface IEmployeeData {
   department: string;
   specialization: string;
   email: string;
-  id: number;
+  id?: number;
 }
 
 export interface IEmployeeDto {

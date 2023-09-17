@@ -3,19 +3,17 @@ import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import * as cvsActions from './cvs.actions';
 
 export interface ICvsInitialState {
-  newCvs: ICv[];
-  existingCVs: ICv[];
+  cvs: ICv[];
 }
 
 export const cvsInitialState: ICvsInitialState = {
-  newCvs: [],
-  existingCVs: [],
+  cvs: [],
 };
 
 export const cvsReducer = createReducer(
   cvsInitialState,
-  on(cvsActions.addToNewCvs, (state, { cv }) => ({
+  on(cvsActions.addToCvs, (state, { cv }) => ({
     ...state,
-    newCvs: [...state.newCvs, cv],
+    cvs: [...state.cvs, cv],
   })),
 );

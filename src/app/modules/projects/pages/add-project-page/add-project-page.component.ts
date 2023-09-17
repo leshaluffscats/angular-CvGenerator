@@ -27,6 +27,7 @@ export class AddProjectPageComponent implements OnInit {
     responsibilities: [],
     teamRoles: [],
   });
+  public isLoading: boolean;
 
   constructor(
     private projectsApi: ProjectsApiService,
@@ -46,10 +47,13 @@ export class AddProjectPageComponent implements OnInit {
       this.form.markAsTouched();
       return;
     }
-
+    this.isLoading = true;
     this.projectsApi
       .addProject(this.form.getRawValue())
       .pipe(untilDestroyed(this))
-      .subscribe(() => this.router.navigate([PROJECTS.path]));
+      .subscribe(() => {
+        this.router.navigate([PROJECTS.path]);
+        this.isLoading = false;
+      });
   }
 }

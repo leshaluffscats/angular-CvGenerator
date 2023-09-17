@@ -20,6 +20,7 @@ import { columns } from './consts/column.const';
 export class ProjectListPageComponent implements OnInit {
   public data$: Observable<IProject[]>;
   public columns: IColumn[] = columns;
+  public isLoading: Observable<boolean>;
 
   constructor(
     private router: Router,
@@ -28,6 +29,7 @@ export class ProjectListPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = this.projectsFacade.getProjectsLoadingState();
     this.data$ = this.projectsFacade.getProjects();
     this.commonFacade.pushToBreadCrumbs([
       { label: 'Projects', routerLink: PROJECTS.path },

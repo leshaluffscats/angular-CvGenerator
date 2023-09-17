@@ -1,4 +1,5 @@
 @import '../../../../../assets/styles/mixins.scss';
+@import '../../../../../assets/styles/variables.scss';
 
 :host {
   display: block;
@@ -10,6 +11,30 @@ main {
   @include flex;
   gap: 30px;
 
+  .sidebar {
+    width: 20%;
+    align-self: flex-start;
+
+    button {
+      cursor: pointer;
+      background-color: $blue;
+      color: white;
+      border: none;
+      border-radius: 50%;
+
+      i {
+        padding: 5px;
+      }
+    }
+  }
+
+  app-sidebar {
+    align-self: flex-start;
+  }
+  .cv-name {
+    width: 30%;
+  }
+
   .projects {
     @include flex;
     flex-direction: column;
@@ -17,11 +42,11 @@ main {
 
     .selectProjects {
       @include flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
       width: 100%;
       app-select {
-        margin-right: 40px;
-        width: 83%;
+        margin-right: 35px;
+        width: 75%;
       }
     }
 

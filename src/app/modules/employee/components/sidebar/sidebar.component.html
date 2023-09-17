@@ -1,6 +1,8 @@
 <ul>
-  <li *ngFor="let cv of cvs; let index">
-    CV
-    <button (click)="deleteRow(cv.id)">Delete</button>
+  <li
+    *ngFor="let cvName of cvNames"
+    (click)="emitCvName(cvName)"
+  >
+    {{ cvName.name }}
   </li>
 </ul>

@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { INameAndId } from 'src/app/shared/interfaces/projects.interface';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +14,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
-  @Input() cvs: { id: number }[] = [];
+  @Input() cvNames: INameAndId[];
+  @Input() isValid: boolean;
 
-  public deleteRow(id: string | number): void {
-    this.cvs = this.cvs.filter(cv => cv.id !== id);
+  @Output() rowClicked = new EventEmitter<INameAndId>();
+
+  public emitCvName(cvName: INameAndId): void {
+    this.rowClicked.emit(cvName);
   }
 }

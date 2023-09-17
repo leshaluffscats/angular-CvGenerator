@@ -14,3 +14,8 @@ export const selectProject = createSelector(
   (state: IProjectsInitialState) => state.project,
   // todo посмотреть в документации про селекторы с параметрами
 );
+
+export const selectLoadingState = createSelector(
+  selectProjectsState,
+  (state: IProjectsInitialState) => state.isLoading,
+);

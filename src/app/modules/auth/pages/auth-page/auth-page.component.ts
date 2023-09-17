@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { markAllAsDirty } from 'src/app/shared/utils/mark-all-as-dirty.utils';
 import { getAccessToken } from 'src/app/store/auth/auth.actions';
-import { AuthFacade } from 'src/app/store/auth/auth.facade';
 
 @Component({
   selector: 'app-auth-page',
@@ -14,11 +13,11 @@ import { AuthFacade } from 'src/app/store/auth/auth.facade';
 export class AuthPageComponent {
   public authForm: FormGroup;
   public error: string;
+  public isLoading: boolean;
 
   constructor(
     private fb: FormBuilder,
     private store: Store,
-    private authFacade: AuthFacade,
   ) {
     this.authForm = this.fb.group({
       email: ['', [Validators.required]],
@@ -33,6 +32,5 @@ export class AuthPageComponent {
     }
 
     this.store.dispatch(getAccessToken(this.authForm.getRawValue()));
-    // this.authFacade.getAccessToken(this.authForm.getRawValue());
   }
 }

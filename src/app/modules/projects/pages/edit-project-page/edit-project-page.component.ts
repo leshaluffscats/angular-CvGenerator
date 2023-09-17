@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { skip, switchMap } from 'rxjs';
+import { Observable, skip, switchMap } from 'rxjs';
 import {
   EDIT_PROJECT,
   PROJECTS,
@@ -31,7 +31,7 @@ export class EditProjectPageComponent implements OnInit {
     responsibilities: [],
     teamRoles: [],
   });
-
+  public isLoading: Observable<boolean>;
   private projectId: string;
 
   constructor(
@@ -43,6 +43,7 @@ export class EditProjectPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.isLoading = this.projectsFacade.getProjectsLoadingState();
     this.commonFacade.pushToBreadCrumbs([
       { label: 'Projects', routerLink: PROJECTS.path },
       { label: 'Edit', routerLink: PROJECTS.path + EDIT_PROJECT.fullPath },

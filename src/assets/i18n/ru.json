@@ -6,8 +6,10 @@
     }
   },
   "BUTTONS": {
-    "ADD_NEW_PROJECT": "Добавить проект",
+    "ADD_NEW_PROJECT": "Создать проект",
+    "ADD_PROJECT": "Добавить проект",
     "ADD_NEW_EMPLOYEE": "Добавить сотрудника",
+    "ADD_CV": "Добавить резюме",
     "ADD": "Добавить",
     "LOGOUT": "Выйти"
   },

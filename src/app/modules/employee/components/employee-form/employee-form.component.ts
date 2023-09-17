@@ -49,18 +49,20 @@ export class EmployeeFormComponent
 
   public ngDoCheck(): void {
     if (this.form.invalid) {
-      this.ngControl.control.setErrors({ projectFormError: true });
+      this.ngControl.control.setErrors({ employeeFormError: true });
     }
 
     if (this.ngControl.control?.touched) {
       markAllAsDirty(this.form);
-      this.cdRef.markForCheck();
+    } else {
+      this.form.markAsPristine();
     }
+    this.cdRef.markForCheck();
   }
 
   public writeValue(obj: { [key: string]: string }): void {
     this.form.setValue(obj, { emitEvent: false });
-    this.cdRef.detectChanges();
+    this.cdRef.markForCheck();
   }
   public registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
@@ -74,7 +76,6 @@ export class EmployeeFormComponent
 
   private initControlValueChanges() {
     this.form.valueChanges.pipe(untilDestroyed(this)).subscribe(value => {
-      console.log(value);
       this.onChange(value);
     });
   }

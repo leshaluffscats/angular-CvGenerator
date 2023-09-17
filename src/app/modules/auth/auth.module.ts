@@ -7,6 +7,7 @@ import { InputComponent } from 'src/app/shared/components/input/input.component'
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { MessagesModule } from 'primeng/messages';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [AuthPageComponent],
@@ -18,6 +19,7 @@ import { MessagesModule } from 'primeng/messages';
     InputComponent,
     ReactiveFormsModule,
     MessagesModule,
+    ProgressSpinnerModule,
   ],
 })
 export class AuthModule {}

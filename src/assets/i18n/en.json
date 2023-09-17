@@ -7,7 +7,9 @@
   },
   "BUTTONS": {
     "ADD_NEW_PROJECT": "Add new project",
+    "ADD_PROJECT": "Add project",
     "ADD_NEW_EMPLOYEE": "Add new employee",
+    "ADD_CV": "Add CV",
     "ADD": "Add",
     "LOGOUT": "Logout"
   },

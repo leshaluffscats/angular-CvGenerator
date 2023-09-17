@@ -4,7 +4,11 @@ import { Observable } from 'rxjs';
 import { IProject } from 'src/app/shared/interfaces/projects.interface';
 import { AppState } from '..';
 import { getProjectById, getProjects } from './projects.actions';
-import { selectProject, selectProjects } from './projects.selector';
+import {
+  selectLoadingState,
+  selectProject,
+  selectProjects,
+} from './projects.selector';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +24,9 @@ export class ProjectFacade {
   public getProjectById(id: string): Observable<IProject> {
     this.store.dispatch(getProjectById({ id }));
     return this.store.select(selectProject);
+  }
+
+  public getProjectsLoadingState(): Observable<boolean> {
+    return this.store.select(selectLoadingState);
   }
 }

@@ -13,3 +13,14 @@
   color: $white;
   border-bottom: 2px solid $white;
 }
+
+.p-dropdown {
+  display: flex !important;
+}
+
+.p-progress-spinner {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  z-index: 10;
+}

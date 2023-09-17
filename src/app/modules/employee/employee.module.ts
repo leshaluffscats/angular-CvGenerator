@@ -18,6 +18,8 @@ import { AddEmployeePageComponent } from './pages/add-employee-page/add-employee
 import { EditEmployeePageComponent } from './pages/edit-employee-page/edit-employee-page.component';
 import { EmployeesListPageComponent } from './pages/employees-list-page/employees-list-page.component';
 import { SelectComponent } from 'src/app/shared/components/select/select.component';
+import { ChipsComponent } from 'src/app/shared/components/chips/chips.component';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { SelectComponent } from 'src/app/shared/components/select/select.compone
     ButtonModule,
     BaseTableComponent,
     CommonModule,
+    ChipsComponent,
+    DividerModule,
     EmployeeRoutingModule,
     TranslateModule,
     TabViewModule,

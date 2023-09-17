@@ -1,8 +1,31 @@
 <main>
-  <app-sidebar></app-sidebar>
+  <div class="sidebar">
+    <app-sidebar
+      [cvNames]="cvNames"
+      (rowClicked)="selectCv($event)"
+    ></app-sidebar>
+    <button (click)="addCvRow()">
+      <i class="pi pi-plus"></i>
+    </button>
+  </div>
+
   <div class="right-side">
     <form [formGroup]="form">
-      <app-employee-form formControlName="employeeForm"></app-employee-form>
+      <div class="cv-name">
+        <app-input
+          formControlName="cvName"
+          placeholder="Cv Name"
+        ></app-input>
+      </div>
+      <p-divider></p-divider>
+      <div class="employeeForm">
+        <app-employee-form formControlName="employeeForm"></app-employee-form>
+        <app-chips
+          formControlName="skills"
+          placeholder="Skills"
+        ></app-chips>
+      </div>
+      <p-divider></p-divider>
 
       <div
         class="projects"
@@ -14,11 +37,10 @@
             [options]="projects"
           ></app-select>
           <p-button
-            label="Add project"
+            [label]="'BUTTONS.ADD_PROJECT' | translate"
             (click)="addProject()"
           ></p-button>
         </div>
-
         <p-accordion [activeIndex]="0">
           <p-accordionTab
             *ngFor="let projectForm of projectForms.controls; let i = index"
@@ -31,6 +53,39 @@
               ></i>
             </ng-template>
             <app-project-form [formControlName]="i"></app-project-form>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+      <p-divider></p-divider>
+      <div
+        formArrayName="languageForms"
+        class="languages"
+      >
+        <p-button
+          label="Add language"
+          (click)="addLanguage()"
+        ></p-button>
+        <p-accordion [activeIndex]="0">
+          <p-accordionTab
+            *ngFor="let languageForm of languageForms.controls; let i = index"
+            [header]="'Language ' + (i + 1)"
+          >
+            <ng-template pTemplate="header">
+              <i
+                class="pi pi-trash mr-2"
+                (click)="deleteLanguage(i)"
+              ></i>
+            </ng-template>
+            <form [formGroupName]="i">
+              <app-input
+                formControlName="name"
+                placeholder="language"
+              ></app-input>
+              <app-input
+                formControlName="level"
+                placeholder="level"
+              ></app-input>
+            </form>
           </p-accordionTab>
         </p-accordion>
       </div>

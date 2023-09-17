@@ -1,8 +1,10 @@
+import { IEmployeeData } from './employees.interface';
 import { INameAndId, IProject, IProjectDto } from './projects.interface';
 
 export interface ICv {
+  id?: number;
   cvName: string;
-  language: ILanguage[];
+  language: ILanguageDto[];
   skills: string[];
   firstName: string;
   lastName: string;
@@ -12,12 +14,6 @@ export interface ICv {
   employeeId: number;
   projects: IProject[];
 }
-
-export interface ILanguage {
-  level: string;
-  name: string;
-}
-
 // DTO
 export interface ICvDto {
   id: number;
@@ -36,7 +32,29 @@ export interface ICvDto {
 }
 
 export interface ILanguageDto {
-  id: number;
+  id?: number;
+  nameId?: number;
+  levelId?: number;
+  name: {
+    id?: number;
+    name: string;
+  };
+  level: {
+    id?: number;
+    name: string;
+  };
+}
+
+export interface ILanguage {
   name: string;
   level: string;
+}
+
+export interface IVirtualCvForm {
+  cvName: string;
+  employeeForm: IEmployeeData;
+  skills: string[];
+  projectForms: IProject[];
+  languageForms: ILanguage[];
+  id?: number;
 }
