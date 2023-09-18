@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { IProject } from '../../interfaces/projects.interface';
+import { ToDatePipe } from '../../pipes/to-date/to-date.pipe';
 
 interface IColumns {
   fieldValue: string;
@@ -17,7 +18,7 @@ interface IColumns {
 @Component({
   selector: 'app-base-table',
   standalone: true,
-  imports: [CommonModule, TableModule],
+  imports: [CommonModule, TableModule, ToDatePipe],
   templateUrl: './base-table.component.html',
   styleUrls: ['./base-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

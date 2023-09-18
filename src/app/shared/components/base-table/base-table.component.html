@@ -10,7 +10,7 @@
   >
     <tr (click)="emitRowData(item)">
       <td *ngFor="let column of columns">
-        {{ item[column.fieldValue] }}
+        {{ item[column.fieldValue] | toDate }}
       </td>
     </tr>
   </ng-template>

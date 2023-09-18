@@ -11,7 +11,7 @@ export interface ICv {
   email: string;
   department: string;
   specialization: string;
-  employeeId: number;
+  employeeId?: number;
   projects: IProject[];
 }
 // DTO

@@ -112,6 +112,7 @@ export class VirtualCvComponent implements OnInit {
     if (this.form.valid) {
       const cv = this.form.getRawValue();
       const id = Date.now();
+      console.log(cv);
       cv.id = id;
 
       this.cvsFacade.addToCvs(cv);
@@ -132,21 +133,16 @@ export class VirtualCvComponent implements OnInit {
       .filter(cv => cv.id === cvName.id)
       .map(cv => this.cvService.transformCvToCvForm(cv));
 
-    console.log(selectedCv);
-
     this.form.patchValue({
       employeeForm: selectedCv.employeeForm,
       skills: selectedCv.skills,
       cvName: selectedCv.cvName,
-      projectForms: selectedCv.projectForms.map(project =>
-        this.projectForms.push(this.fb.control(project)),
-      ),
-      languageForms: selectedCv.languageForms.map(language =>
-        this.languageForms.push(
-          this.fb.group({ name: language.name, level: language.level }),
-        ),
-      ),
     });
+
+    selectedCv.projectForms.forEach(project =>
+      this.projectForms.push(this.fb.control(project)),
+    );
+    // для language форм сделать то же самое
   }
 
   private resetForm(): void {

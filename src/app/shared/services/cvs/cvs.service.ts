@@ -7,7 +7,7 @@ import { ICv, IVirtualCvForm } from '../../interfaces/cv.interface';
 export class CvsService {
   constructor() {}
 
-  public tranformCvFormToCv(cv: IVirtualCvForm, employeeId?: number): ICv {
+  public tranformCvFormToCv(cv: IVirtualCvForm): ICv {
     return {
       cvName: cv.cvName,
       firstName: cv.employeeForm.firstName,
@@ -16,7 +16,6 @@ export class CvsService {
       department: cv.employeeForm.department,
       specialization: cv.employeeForm.specialization,
       skills: cv.skills,
-      employeeId,
       id: cv.id,
       projects: cv.projectForms,
       language: cv.languageForms.map(language => ({

@@ -24,10 +24,4 @@ import { GetErrorMessagePipe } from '../../pipes/get-error-message/get-error-mes
 })
 export class DatepickerComponent extends BaseInputClass {
   @Input() placeholder: string;
-
-  protected override initControlValueChanges(): void {
-    this.control.valueChanges.subscribe(value => {
-      this.onChange(value);
-    });
-  }
 }
