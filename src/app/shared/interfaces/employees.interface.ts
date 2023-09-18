@@ -1,4 +1,5 @@
 import { INameAndId } from 'src/app/shared/interfaces/projects.interface';
+import { ICvDto } from './cv.interface';
 
 export interface IEmployeeData {
   firstName: string;
@@ -16,4 +17,16 @@ export interface IEmployeeDto {
   specialization: INameAndId;
   email: string;
   id: number;
+}
+
+export interface ISingleEmployeeInfo {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  departmentId: number;
+  specializationId: number;
+  department: INameAndId;
+  specialization: INameAndId;
+  cvs: ICvDto[];
 }

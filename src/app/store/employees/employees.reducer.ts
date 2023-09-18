@@ -1,11 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
-import { IEmployeeData } from 'src/app/shared/interfaces/employees.interface';
+import {
+  IEmployeeData,
+  ISingleEmployeeInfo,
+} from 'src/app/shared/interfaces/employees.interface';
 import { IError } from 'src/app/shared/interfaces/error.interface';
 import * as employeesActions from './employees.actions';
 
 export interface IEmployeeInitialState {
   employees: IEmployeeData[];
-  employee: IEmployeeData;
+  employee: ISingleEmployeeInfo;
   isLoading: boolean;
   error: IError;
 }
@@ -33,5 +36,19 @@ export const employeesReducer = createReducer(
     ...state,
     isLoading: false,
     error: error,
+  })),
+  on(employeesActions.getEmployeeByid, state => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(employeesActions.getEmployeeByidSuccess, (state, { employee }) => ({
+    ...state,
+    isLoading: false,
+    error: null,
+    employee,
+  })),
+  on(employeesActions.resetEmployeeInfo, state => ({
+    ...state,
+    employee: null,
   })),
 );

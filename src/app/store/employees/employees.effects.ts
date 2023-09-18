@@ -4,7 +4,10 @@ import { EmployeesApiService } from 'src/app/shared/services/api/employees/emplo
 import { ErrorService } from 'src/app/shared/services/error/error.service';
 import * as employeesActions from './employees.actions';
 import { catchError, map, mergeMap, of } from 'rxjs';
-import { IEmployeeData } from 'src/app/shared/interfaces/employees.interface';
+import {
+  IEmployeeData,
+  ISingleEmployeeInfo,
+} from 'src/app/shared/interfaces/employees.interface';
 import { IError } from 'src/app/shared/interfaces/error.interface';
 
 @Injectable()
@@ -21,6 +24,23 @@ export class EmployeesEffects {
             this.errorService.showError(error.message);
             return of(employeesActions.getEmployeesFailure({ error }));
           }),
+        ),
+      ),
+    ),
+  );
+  getEmployeeById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(employeesActions.getEmployeeByid),
+      mergeMap(({ id }) =>
+        this.employeesApi.getEmployeeById(id).pipe(
+          map(
+            (employee: ISingleEmployeeInfo) =>
+              employeesActions.getEmployeeByidSuccess({ employee }),
+            catchError((error: IError) => {
+              this.errorService.showError(error.message);
+              return of(employeesActions.getEmployeeByidFailure());
+            }),
+          ),
         ),
       ),
     ),

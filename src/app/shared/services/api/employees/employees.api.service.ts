@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import {
   IEmployeeData,
   IEmployeeDto,
+  ISingleEmployeeInfo,
 } from 'src/app/shared/interfaces/employees.interface';
 
 @Injectable({
@@ -24,7 +25,16 @@ export class EmployeesApiService {
       }),
     );
   }
+
+  public getEmployeeById(id: string): Observable<ISingleEmployeeInfo> {
+    return this.http.get<ISingleEmployeeInfo>(`${API_EMPLOYEES_URL}/${id}`);
+  }
+
   public addEmployee(employee: IEmployeeData): Observable<IEmployeeDto> {
     return this.http.post<IEmployeeDto>(API_EMPLOYEES_URL, employee);
+  }
+
+  public deleteEmployee(id: string): Observable<void> {
+    return this.http.delete<void>(`${API_EMPLOYEES_URL}/${id}`);
   }
 }

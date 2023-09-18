@@ -1,11 +1,16 @@
 <div class="card">
   <p-tabView>
-    <p-tabPanel header="Info">
+    <p-tabPanel
+      header="Info"
+      class="real-info"
+    >
       <app-employee-form [formControl]="employeeForm"></app-employee-form>
+      <ng-content></ng-content>
     </p-tabPanel>
     <p-tabPanel header="CV">
       <app-virtual-cv></app-virtual-cv>
     </p-tabPanel>
+    <p-divider></p-divider>
     <p-button
       [label]="'BUTTONS.ADD_CV' | translate"
       (click)="addEmployeeAndCv()"
