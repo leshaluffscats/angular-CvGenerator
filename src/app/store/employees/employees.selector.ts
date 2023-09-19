@@ -13,3 +13,8 @@ export const selectEmployee = createSelector(
   selectEmployeesState,
   (state: IEmployeeInitialState) => state.employee,
 );
+
+// export const selectEmployeeCvs = createSelector(
+//   selectEmployeesState,
+//   (state: IEmployeeInitialState) => state.employee.cvs,
+// );

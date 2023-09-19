@@ -15,6 +15,8 @@ export class CvApiService {
       const newcv = { ...cv };
       newcv.employeeId = employeeId;
       delete newcv.id;
+      delete newcv.isNew;
+
       return this.addCv(newcv, index);
     });
 

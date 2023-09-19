@@ -71,7 +71,11 @@ export class TabsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.cvFacade.getCvs().subscribe((cvs: ICv[]) => (this.cvs = cvs));
+    this.cvFacade
+      .getCvs()
+      .pipe(untilDestroyed(this))
+      .subscribe((cvs: ICv[]) => (this.cvs = cvs));
+
     this.employeeApiService
       .addEmployee(this.employeeForm.getRawValue())
       .pipe(

@@ -13,6 +13,7 @@ export interface ICv {
   specialization: string;
   employeeId?: number;
   projects: IProject[];
+  isNew?: boolean;
 }
 // DTO
 export interface ICvDto {
@@ -57,4 +58,6 @@ export interface IVirtualCvForm {
   projectForms: IProject[];
   languageForms: ILanguage[];
   id?: number;
+  isNew?: boolean;
+  employeeId?: number;
 }

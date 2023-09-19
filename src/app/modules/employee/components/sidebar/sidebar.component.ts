@@ -1,11 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { INameAndId } from 'src/app/shared/interfaces/projects.interface';
+import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,9 +12,9 @@ export class SidebarComponent {
   @Input() cvNames: INameAndId[];
   @Input() isValid: boolean;
 
-  @Output() rowClicked = new EventEmitter<INameAndId>();
+  constructor(private cvFacade: CvsFacade) {}
 
-  public emitCvName(cvName: INameAndId): void {
-    this.rowClicked.emit(cvName);
+  public selectCv(id: number): void {
+    this.cvFacade.selectCv(id);
   }
 }

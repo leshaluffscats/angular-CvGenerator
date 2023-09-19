@@ -49,6 +49,11 @@ export class EditProjectPageComponent implements OnInit {
       { label: 'Edit', routerLink: PROJECTS.path + EDIT_PROJECT.fullPath },
     ]);
 
+    this.commonFacade.setTitles({
+      title: 'Projects',
+      subtitle: 'Edit project',
+    });
+
     this.activatedRoute.paramMap
       .pipe(
         switchMap((params: ParamMap) => {

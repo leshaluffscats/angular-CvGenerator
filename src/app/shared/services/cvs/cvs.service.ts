@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ICv, IVirtualCvForm } from '../../interfaces/cv.interface';
+import { ICv, ICvDto, IVirtualCvForm } from '../../interfaces/cv.interface';
+import { ProjectsService } from '../projects/projects.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CvsService {
-  constructor() {}
+  constructor(private projectsService: ProjectsService) {}
 
   public tranformCvFormToCv(cv: IVirtualCvForm): ICv {
     return {
@@ -17,6 +18,8 @@ export class CvsService {
       specialization: cv.employeeForm.specialization,
       skills: cv.skills,
       id: cv.id,
+      employeeId: cv.employeeId,
+      isNew: cv.isNew,
       projects: cv.projectForms,
       language: cv.languageForms.map(language => ({
         name: { name: language.name },
@@ -29,6 +32,7 @@ export class CvsService {
     return {
       cvName: cv.cvName,
       id: cv.id,
+      employeeId: cv.employeeId,
       employeeForm: {
         firstName: cv.firstName,
         lastName: cv.lastName,
@@ -36,12 +40,29 @@ export class CvsService {
         department: cv.department,
         specialization: cv.specialization,
       },
+      isNew: cv.isNew,
       projectForms: cv.projects,
       skills: cv.skills,
       languageForms: cv.language.map(language => ({
         name: language.name.name,
         level: language.level.name,
       })),
+    };
+  }
+
+  public tranformCvDtoToCv(cv: ICvDto): ICv {
+    return {
+      id: cv.id,
+      cvName: cv.cvName,
+      firstName: cv.firstName,
+      lastName: cv.lastName,
+      email: cv.email,
+      department: cv.department.name,
+      specialization: cv.specialization.name,
+      skills: cv.skills.map(skill => skill.name),
+      language: cv.language,
+      employeeId: cv.employeeId,
+      projects: this.projectsService.modifyProjectsArr(cv.cvsProjects),
     };
   }
 }

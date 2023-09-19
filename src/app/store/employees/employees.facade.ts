@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '..';
 import { Observable } from 'rxjs';
 import {
   IEmployeeData,
   ISingleEmployeeInfo,
 } from 'src/app/shared/interfaces/employees.interface';
+import { AppState } from '..';
 import {
   getEmployeeByid,
   getEmployees,

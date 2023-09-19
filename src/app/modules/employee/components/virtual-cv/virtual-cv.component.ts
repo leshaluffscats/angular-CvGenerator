@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import {
@@ -12,7 +13,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ICv } from 'src/app/shared/interfaces/cv.interface';
+import {
+  ICv,
+  ILanguage,
+  IVirtualCvForm,
+} from 'src/app/shared/interfaces/cv.interface';
 import {
   INameAndId,
   IProject,
@@ -29,12 +34,14 @@ import { ProjectFacade } from 'src/app/store/projects/projects.facade';
   styleUrls: ['./virtual-cv.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VirtualCvComponent implements OnInit {
+export class VirtualCvComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public projects: IProject[];
   public selectProject: FormControl;
   public cvNames: INameAndId[] = [];
+
   private cvs: ICv[];
+  private selectedCv: IVirtualCvForm;
 
   constructor(
     private fb: FormBuilder,
@@ -69,7 +76,26 @@ export class VirtualCvComponent implements OnInit {
     this.cvsFacade
       .getCvs()
       .pipe(untilDestroyed(this))
-      .subscribe((cvs: ICv[]) => (this.cvs = cvs));
+      .subscribe((cvs: ICv[]) => {
+        this.cvs = cvs;
+        this.cvNames = this.cvs.map(cv => ({ name: cv.cvName, id: cv.id }));
+        this.cdRef.markForCheck();
+      });
+
+    this.cvsFacade
+      .getSelectedCv()
+      .pipe(untilDestroyed(this))
+      .subscribe(([cv]) => {
+        this.resetForm();
+        this.selectedCv = this.cvService.transformCvToCvForm(cv);
+        this.setEmployeeFormValue(this.selectedCv);
+        this.setLanguages(this.selectedCv.languageForms);
+        this.setProjects(this.selectedCv.projectForms);
+      });
+  }
+
+  public ngOnDestroy(): void {
+    this.cvsFacade.resetCvs();
   }
 
   public get projectForms() {
@@ -110,39 +136,18 @@ export class VirtualCvComponent implements OnInit {
 
   public addCvRow(): void {
     if (this.form.valid) {
-      const cv = this.form.getRawValue();
       const id = Date.now();
-      console.log(cv);
+      const cv = this.form.getRawValue();
       cv.id = id;
+      cv.isNew = true;
 
       this.cvsFacade.addToCvs(cv);
-      this.cvNames = [
-        ...this.cvNames,
-        { name: `cv ${this.cvNames.length + 1}`, id: id },
-      ];
 
       this.resetForm();
     } else {
       this.form.markAllAsTouched();
       markAllAsDirty(this.form);
     }
-  }
-
-  public selectCv(cvName: INameAndId): void {
-    const [selectedCv] = this.cvs
-      .filter(cv => cv.id === cvName.id)
-      .map(cv => this.cvService.transformCvToCvForm(cv));
-
-    this.form.patchValue({
-      employeeForm: selectedCv.employeeForm,
-      skills: selectedCv.skills,
-      cvName: selectedCv.cvName,
-    });
-
-    selectedCv.projectForms.forEach(project =>
-      this.projectForms.push(this.fb.control(project)),
-    );
-    // для language форм сделать то же самое
   }
 
   private resetForm(): void {
@@ -158,13 +163,53 @@ export class VirtualCvComponent implements OnInit {
     this.form.get('cvName').reset();
     this.form.get('skills').reset();
 
-    this.projectForms.clear();
-    this.languageForms.clear();
+    this.clearFormArrays();
 
     this.form.markAsUntouched();
     this.form.markAsPristine();
     this.form.updateValueAndValidity();
 
     this.cdRef.markForCheck();
+  }
+
+  private clearFormArrays(): void {
+    this.projectForms.clear();
+    this.languageForms.clear();
+  }
+
+  private setEmployeeFormValue(cv: IVirtualCvForm): void {
+    this.form.patchValue({
+      employeeForm: cv.employeeForm,
+      skills: cv.skills,
+      cvName: cv.cvName,
+    });
+  }
+
+  private setLanguages(languages: ILanguage[]): void {
+    languages.forEach(language =>
+      this.languageForms.push(
+        this.fb.group({
+          name: language.name,
+          level: language.level,
+        }),
+      ),
+    );
+  }
+
+  private setProjects(projects: IProject[]): void {
+    projects.forEach(project =>
+      this.projectForms.push(
+        this.fb.control({
+          projectName: project.projectName,
+          startDate: project.startDate,
+          endDate: project.endDate,
+          teamSize: project.teamSize,
+          techStack: project.techStack,
+          description: project.description,
+          responsibilities: project.responsibilities,
+          teamRoles: project.teamRoles,
+        }),
+      ),
+    );
   }
 }

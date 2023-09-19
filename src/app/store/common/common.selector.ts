@@ -13,3 +13,8 @@ export const selectBreadCrumbs = createSelector(
   selectCommonState,
   (state: ICommonInitialState) => state.breadcrumbs,
 );
+
+export const selectTitles = createSelector(
+  selectCommonState,
+  (state: ICommonInitialState) => state.titles,
+);

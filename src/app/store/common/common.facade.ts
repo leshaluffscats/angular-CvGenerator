@@ -3,8 +3,13 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
 import { AppState } from '..';
-import { changeTheme, pushToBreadCrumbs } from './common.actions';
-import { selectBreadCrumbs, selectTheme } from './common.selector';
+import { changeTheme, pushToBreadCrumbs, setTitles } from './common.actions';
+import {
+  selectBreadCrumbs,
+  selectTheme,
+  selectTitles,
+} from './common.selector';
+import { ITitle } from 'src/app/shared/interfaces/titles.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +32,13 @@ export class CommonFacade {
 
   public pushToBreadCrumbs(data: IBreadCrumb[]): void {
     this.store.dispatch(pushToBreadCrumbs({ data }));
+  }
+
+  public setTitles(titles: ITitle): void {
+    this.store.dispatch(setTitles({ titles }));
+  }
+
+  public getTitles(): Observable<ITitle> {
+    return this.store.select(selectTitles);
   }
 }

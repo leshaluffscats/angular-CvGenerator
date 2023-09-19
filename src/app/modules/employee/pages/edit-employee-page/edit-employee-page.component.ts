@@ -41,6 +41,16 @@ export class EditEmployeePageComponent implements OnInit {
         }),
       )
       .subscribe();
+
+    this.employeesFacade
+      .selectEmployee()
+      .pipe(untilDestroyed(this))
+      .subscribe(employee =>
+        this.commonFacade.setTitles({
+          title: 'Employee',
+          subtitle: `${employee.firstName} ${employee.lastName}'s profile`,
+        }),
+      );
   }
 
   public deleteEmployee(): void {

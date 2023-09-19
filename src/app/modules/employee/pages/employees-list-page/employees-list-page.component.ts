@@ -32,6 +32,10 @@ export class EmployeesListPageComponent implements OnInit {
     this.commonFacade.pushToBreadCrumbs([
       { label: 'Employees', routerLink: EMPLOYEES.path },
     ]);
+    this.commonFacade.setTitles({
+      title: 'Employees',
+      subtitle: "Employee's list",
+    });
 
     this.employeesData$ = this.employeesFacade.getEmployees();
   }

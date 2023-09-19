@@ -40,6 +40,10 @@ export class AddProjectPageComponent implements OnInit {
       { label: 'Projects', routerLink: PROJECTS.path },
       { label: 'Add', routerLink: PROJECTS.path + ADD_PROJECT.fullPath },
     ]);
+    this.commonFacade.setTitles({
+      title: 'Projects',
+      subtitle: 'Add new project',
+    });
   }
 
   public addProject() {

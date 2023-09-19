@@ -1,7 +1,7 @@
 <ul>
   <li
     *ngFor="let cvName of cvNames"
-    (click)="emitCvName(cvName)"
+    (click)="selectCv(cvName.id)"
   >
     {{ cvName.name }}
   </li>

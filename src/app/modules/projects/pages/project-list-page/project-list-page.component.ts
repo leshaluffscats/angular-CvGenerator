@@ -34,6 +34,10 @@ export class ProjectListPageComponent implements OnInit {
     this.commonFacade.pushToBreadCrumbs([
       { label: 'Projects', routerLink: PROJECTS.path },
     ]);
+    this.commonFacade.setTitles({
+      title: 'Projects',
+      subtitle: 'Projects list',
+    });
   }
 
   public navigateToEditProject(project: IProject): void {

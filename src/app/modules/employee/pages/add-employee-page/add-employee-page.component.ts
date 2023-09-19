@@ -19,5 +19,9 @@ export class AddEmployeePageComponent implements OnInit {
       { label: 'Employees', routerLink: EMPLOYEES.path },
       { label: 'Add', routerLink: EMPLOYEES.path + ADD_EMPLOYEE.fullPath },
     ]);
+    this.commonFacade.setTitles({
+      title: 'Employees',
+      subtitle: 'Add new employee',
+    });
   }
 }

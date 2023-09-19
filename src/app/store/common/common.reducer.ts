@@ -1,15 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 import * as commonActions from './common.actions';
 import { IBreadCrumb } from 'src/app/shared/interfaces/breadcrumbs.interface';
+import { ITitle } from 'src/app/shared/interfaces/titles.interface';
 
 export interface ICommonInitialState {
   breadcrumbs: IBreadCrumb[];
   isDark: boolean;
+  titles: ITitle;
 }
 
 export const commonInitialState: ICommonInitialState = {
   breadcrumbs: null,
   isDark: false,
+  titles: null,
 };
 
 export const commonReducer = createReducer(
@@ -19,9 +22,12 @@ export const commonReducer = createReducer(
     isDark: !state.isDark,
   })),
 
-  // todo переименовать дату
-  on(commonActions.pushToBreadCrumbs, (state, { data }) => ({
+  on(commonActions.pushToBreadCrumbs, (state, { data: breadcrumbs }) => ({
     ...state,
-    breadcrumbs: data,
+    breadcrumbs,
+  })),
+  on(commonActions.setTitles, (state, { titles }) => ({
+    ...state,
+    titles,
   })),
 );

@@ -81,7 +81,6 @@ export class ProjectFormComponent
   }
 
   public writeValue(obj: { [key: string]: string }): void {
-    console.log(obj);
     this.formGroup.setValue(obj, { emitEvent: false });
     this.cdRef.detectChanges();
   }
