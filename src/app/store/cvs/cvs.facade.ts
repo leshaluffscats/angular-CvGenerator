@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ICv, IVirtualCvForm } from 'src/app/shared/interfaces/cv.interface';
+import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import { CvsService } from 'src/app/shared/services/cvs/cvs.service';
 import { AppState } from '..';
-import { addToCvs, resetCvs, selectCv } from './cvs.actions';
+import { addToCvs, resetCvs, resetSelectedCv, selectCv } from './cvs.actions';
 import { getSelectedCv, selectAllCvs } from './cvs.selector';
 
 @Injectable({
@@ -20,10 +20,8 @@ export class CvsFacade {
     return this.store.select(selectAllCvs);
   }
 
-  public addToCvs(cv: IVirtualCvForm): void {
-    this.store.dispatch(
-      addToCvs({ cv: this.cvService.tranformCvFormToCv(cv) }),
-    );
+  public addToCvs(cv: ICv): void {
+    this.store.dispatch(addToCvs({ cv }));
   }
   public resetCvs(): void {
     this.store.dispatch(resetCvs());
@@ -35,5 +33,9 @@ export class CvsFacade {
 
   public getSelectedCv(): Observable<ICv> {
     return this.store.select(getSelectedCv);
+  }
+
+  public resetSelectedCv(): void {
+    this.store.dispatch(resetSelectedCv());
   }
 }

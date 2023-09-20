@@ -8,8 +8,18 @@
 ul {
   list-style-type: none;
   li {
-    margin-bottom: 5px;
+    padding: 7px;
     cursor: pointer;
+    border-radius: 3px;
     border-bottom: 1px solid $blue;
+    margin-bottom: 5px;
+
+    &:hover {
+      background-color: $blue;
+    }
+  }
+
+  .active {
+    background: $blue;
   }
 }

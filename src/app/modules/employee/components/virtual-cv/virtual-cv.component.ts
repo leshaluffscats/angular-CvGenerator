@@ -102,11 +102,11 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
       .subscribe(value => {
         value.id = this.selectedCv.id;
         value.isNew = this.selectedCv.isNew;
-        console.log(value);
+        value.employeeId = this.employeeId;
         if (!value.isNew) {
           value.isEdited = true;
         }
-        this.cvsFacade.addToCvs(value);
+        this.cvsFacade.addToCvs(this.cvService.tranformCvFormToCv(value));
       });
 
     this.employeeFacade
@@ -119,6 +119,7 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.cvsFacade.resetCvs();
+    this.cvsFacade.resetSelectedCv();
   }
 
   public get projectForms() {
@@ -179,7 +180,7 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
       isNew: true,
       employeeId: this.employeeId || null,
     };
-    this.cvsFacade.addToCvs(this.cvService.transformCvToCvForm(cv));
+    this.cvsFacade.addToCvs(cv);
     this.cvsFacade.selectCv(id);
   }
 

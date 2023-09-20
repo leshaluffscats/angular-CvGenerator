@@ -5,8 +5,7 @@ import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 
 export interface ICvsInitialState extends EntityState<ICv> {
   cvs: ICv[];
-
-  selectedCv: ICv | null;
+  selectedCv: ICv;
 }
 
 export const cvsAdapter: EntityAdapter<ICv> = createEntityAdapter<ICv>();
@@ -30,5 +29,9 @@ export const cvsReducer = createReducer(
   on(cvsActions.selectCv, (state, { id }) => ({
     ...state,
     selectedCv: state.entities[id] || null,
+  })),
+  on(cvsActions.resetSelectedCv, state => ({
+    ...state,
+    selectedCv: null,
   })),
 );

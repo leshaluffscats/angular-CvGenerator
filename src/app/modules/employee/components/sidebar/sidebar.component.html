@@ -2,6 +2,7 @@
   <li
     *ngFor="let cvName of cvNames"
     (click)="selectCv(cvName.id)"
+    [ngClass]="{ active: cvName?.id === cv?.id }"
   >
     {{ cvName.name }}
   </li>
