@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { switchMap } from 'rxjs';
+import { filter, switchMap, take } from 'rxjs';
 import {
   EDIT_EMPLOYEE,
   EMPLOYEES,
@@ -39,18 +39,16 @@ export class EditEmployeePageComponent implements OnInit {
           this.id = params.get('id');
           return this.employeesFacade.getEmployee(this.id);
         }),
+        filter(Boolean),
+        take(1),
       )
-      .subscribe();
-
-    this.employeesFacade
-      .selectEmployee()
-      .pipe(untilDestroyed(this))
-      .subscribe(employee =>
+      .subscribe(employee => {
+        console.log(employee);
         this.commonFacade.setTitles({
           title: 'Employee',
           subtitle: `${employee.firstName} ${employee.lastName}'s profile`,
-        }),
-      );
+        });
+      });
   }
 
   public deleteEmployee(): void {

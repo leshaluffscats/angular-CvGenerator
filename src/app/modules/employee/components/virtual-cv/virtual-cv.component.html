@@ -6,7 +6,10 @@
     </button>
   </div>
 
-  <div class="right-side">
+  <div
+    class="right-side"
+    *ngIf="cvs.length"
+  >
     <form [formGroup]="form">
       <div class="cv-name">
         <app-input

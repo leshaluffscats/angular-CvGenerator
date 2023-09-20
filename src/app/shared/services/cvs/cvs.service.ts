@@ -20,6 +20,7 @@ export class CvsService {
       id: cv.id,
       employeeId: cv.employeeId,
       isNew: cv.isNew,
+      isEdited: cv.isEdited,
       projects: cv.projectForms,
       language: cv.languageForms.map(language => ({
         name: { name: language.name },

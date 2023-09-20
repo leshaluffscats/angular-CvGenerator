@@ -13,6 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { debounceTime, filter } from 'rxjs';
 import {
   ICv,
   ILanguage,
@@ -39,8 +40,8 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
   public projects: IProject[];
   public selectProject: FormControl;
   public cvNames: INameAndId[] = [];
+  public cvs: ICv[] = [];
 
-  private cvs: ICv[];
   private selectedCv: IVirtualCvForm;
 
   constructor(
@@ -84,13 +85,22 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
 
     this.cvsFacade
       .getSelectedCv()
-      .pipe(untilDestroyed(this))
+      .pipe(untilDestroyed(this), filter(Boolean))
       .subscribe(([cv]) => {
-        this.resetForm();
-        this.selectedCv = this.cvService.transformCvToCvForm(cv);
-        this.setEmployeeFormValue(this.selectedCv);
-        this.setLanguages(this.selectedCv.languageForms);
-        this.setProjects(this.selectedCv.projectForms);
+        if (cv) {
+          this.resetForm();
+          this.setCvFormValue(cv);
+        }
+      });
+
+    this.form.valueChanges
+      .pipe(untilDestroyed(this), debounceTime(1000))
+      .subscribe(value => {
+        value.isNew = this.selectedCv.isNew;
+        if (!value.isNew) {
+          value.isEdited = true;
+        }
+        this.cvsFacade.addToCvs(value);
       });
   }
 
@@ -135,6 +145,22 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
   }
 
   public addCvRow(): void {
+    const cv: ICv = {
+      id: Date.now(),
+      cvName: 'New cv',
+      language: [],
+      skills: [''],
+      firstName: '',
+      lastName: '',
+      email: '',
+      department: '',
+      specialization: '',
+      projects: [],
+      isNew: true,
+    };
+
+    this.cvsFacade.addToCvs(this.cvService.transformCvToCvForm(cv));
+
     if (this.form.valid) {
       const id = Date.now();
       const cv = this.form.getRawValue();
@@ -175,6 +201,13 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
   private clearFormArrays(): void {
     this.projectForms.clear();
     this.languageForms.clear();
+  }
+
+  private setCvFormValue(cv: ICv): void {
+    this.selectedCv = this.cvService.transformCvToCvForm(cv);
+    this.setEmployeeFormValue(this.selectedCv);
+    this.setLanguages(this.selectedCv.languageForms);
+    this.setProjects(this.selectedCv.projectForms);
   }
 
   private setEmployeeFormValue(cv: IVirtualCvForm): void {

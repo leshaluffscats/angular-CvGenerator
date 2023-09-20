@@ -14,6 +14,7 @@ export interface ICv {
   employeeId?: number;
   projects: IProject[];
   isNew?: boolean;
+  isEdited?: boolean;
 }
 // DTO
 export interface ICvDto {
@@ -59,5 +60,7 @@ export interface IVirtualCvForm {
   languageForms: ILanguage[];
   id?: number;
   isNew?: boolean;
+  isEdited?: boolean;
+
   employeeId?: number;
 }
