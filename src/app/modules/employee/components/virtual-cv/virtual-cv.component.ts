@@ -19,6 +19,7 @@ import {
   ILanguage,
   IVirtualCvForm,
 } from 'src/app/shared/interfaces/cv.interface';
+import { ISingleEmployeeInfo } from 'src/app/shared/interfaces/employees.interface';
 import {
   INameAndId,
   IProject,
@@ -26,6 +27,7 @@ import {
 import { CvsService } from 'src/app/shared/services/cvs/cvs.service';
 import { markAllAsDirty } from 'src/app/shared/utils/mark-all-as-dirty.utils';
 import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
+import { EmployeesFacade } from 'src/app/store/employees/employees.facade';
 import { ProjectFacade } from 'src/app/store/projects/projects.facade';
 
 @UntilDestroy()
@@ -43,6 +45,7 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
   public cvs: ICv[] = [];
 
   private selectedCv: IVirtualCvForm;
+  private employeeId: number;
 
   constructor(
     private fb: FormBuilder,
@@ -50,6 +53,7 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
     private cvsFacade: CvsFacade,
     private cdRef: ChangeDetectorRef,
     private cvService: CvsService,
+    private employeeFacade: EmployeesFacade,
   ) {
     this.selectProject = this.fb.control('');
     this.form = this.fb.group({
@@ -86,7 +90,7 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
     this.cvsFacade
       .getSelectedCv()
       .pipe(untilDestroyed(this), filter(Boolean))
-      .subscribe(([cv]) => {
+      .subscribe(cv => {
         if (cv) {
           this.resetForm();
           this.setCvFormValue(cv);
@@ -96,12 +100,21 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
     this.form.valueChanges
       .pipe(untilDestroyed(this), debounceTime(1000))
       .subscribe(value => {
+        value.id = this.selectedCv.id;
         value.isNew = this.selectedCv.isNew;
+        console.log(value);
         if (!value.isNew) {
           value.isEdited = true;
         }
         this.cvsFacade.addToCvs(value);
       });
+
+    this.employeeFacade
+      .selectEmployee()
+      .pipe(untilDestroyed(this), filter(Boolean))
+      .subscribe(
+        (employee: ISingleEmployeeInfo) => (this.employeeId = employee?.id),
+      );
   }
 
   public ngOnDestroy(): void {
@@ -145,8 +158,15 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
   }
 
   public addCvRow(): void {
+    if (this.form.invalid && this.cvs.length) {
+      this.form.markAllAsTouched();
+      markAllAsDirty(this.form);
+      return;
+    }
+
+    const id = Date.now();
     const cv: ICv = {
-      id: Date.now(),
+      id,
       cvName: 'New cv',
       language: [],
       skills: [''],
@@ -157,23 +177,10 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
       specialization: '',
       projects: [],
       isNew: true,
+      employeeId: this.employeeId || null,
     };
-
     this.cvsFacade.addToCvs(this.cvService.transformCvToCvForm(cv));
-
-    if (this.form.valid) {
-      const id = Date.now();
-      const cv = this.form.getRawValue();
-      cv.id = id;
-      cv.isNew = true;
-
-      this.cvsFacade.addToCvs(cv);
-
-      this.resetForm();
-    } else {
-      this.form.markAllAsTouched();
-      markAllAsDirty(this.form);
-    }
+    this.cvsFacade.selectCv(id);
   }
 
   private resetForm(): void {
