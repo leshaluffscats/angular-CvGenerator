@@ -1,22 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   OnDestroy,
   OnInit,
+  Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { concatMap } from 'rxjs';
-import { EMPLOYEES } from 'src/app/shared/constants/routing-paths.consts';
 import { ICv } from 'src/app/shared/interfaces/cv.interface';
-import {
-  IEmployeeDto,
-  ISingleEmployeeInfo,
-} from 'src/app/shared/interfaces/employees.interface';
-import { CvApiService } from 'src/app/shared/services/api/cv/cv.api.service';
-import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
-import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
+import { ISingleEmployeeInfo } from 'src/app/shared/interfaces/employees.interface';
 import { EmployeesFacade } from 'src/app/store/employees/employees.facade';
 
 @UntilDestroy()
@@ -27,6 +20,8 @@ import { EmployeesFacade } from 'src/app/store/employees/employees.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements OnInit, OnDestroy {
+  @Output() buttonClicked = new EventEmitter();
+
   public cvs: ICv[];
   public employeeForm: FormControl = new FormControl({
     firstName: '',
@@ -36,13 +31,7 @@ export class TabsComponent implements OnInit, OnDestroy {
     department: '',
   });
 
-  constructor(
-    private employeeApiService: EmployeesApiService,
-    private router: Router,
-    private cvApiService: CvApiService,
-    private cvFacade: CvsFacade,
-    private employeesFacade: EmployeesFacade,
-  ) {}
+  constructor(private employeesFacade: EmployeesFacade) {}
 
   ngOnInit(): void {
     this.employeesFacade
@@ -71,19 +60,6 @@ export class TabsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.cvFacade
-      .getCvs()
-      .pipe(untilDestroyed(this))
-      .subscribe((cvs: ICv[]) => (this.cvs = cvs));
-
-    this.employeeApiService
-      .addEmployee(this.employeeForm.getRawValue())
-      .pipe(
-        untilDestroyed(this),
-        concatMap((employee: IEmployeeDto) =>
-          this.cvApiService.addCvs(this.cvs, employee.id),
-        ),
-      )
-      .subscribe(() => this.router.navigate([EMPLOYEES.path]));
+    this.buttonClicked.emit(this.employeeForm.getRawValue());
   }
 }

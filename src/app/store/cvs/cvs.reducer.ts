@@ -4,14 +4,12 @@ import * as cvsActions from './cvs.actions';
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 
 export interface ICvsInitialState extends EntityState<ICv> {
-  cvs: ICv[];
   selectedCv: ICv;
 }
 
 export const cvsAdapter: EntityAdapter<ICv> = createEntityAdapter<ICv>();
-export const cvsInitialState: ICvsInitialState = cvsAdapter.getInitialState({
-  cvs: [],
 
+export const cvsInitialState: ICvsInitialState = cvsAdapter.getInitialState({
   selectedCv: null,
 });
 

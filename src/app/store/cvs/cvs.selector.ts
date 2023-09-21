@@ -15,3 +15,14 @@ export const getSelectedCv = createSelector(
   selectCvsState,
   (state: ICvsInitialState) => state.selectedCv,
 );
+
+export const selectNewCvs = createSelector(
+  selectCvsState,
+  (state: ICvsInitialState) => selectAll(state).filter(cv => cv.isNew === true),
+);
+
+export const selectEditedCvs = createSelector(
+  selectCvsState,
+  (state: ICvsInitialState) =>
+    selectAll(state).filter(cv => cv.isEdited === true),
+);

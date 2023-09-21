@@ -170,7 +170,7 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
       id,
       cvName: 'New cv',
       language: [],
-      skills: [''],
+      skills: [],
       firstName: '',
       lastName: '',
       email: '',

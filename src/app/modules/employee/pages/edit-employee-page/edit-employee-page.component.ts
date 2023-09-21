@@ -1,13 +1,17 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter, switchMap, take } from 'rxjs';
+import { concatMap, filter, switchMap, take } from 'rxjs';
 import {
   EDIT_EMPLOYEE,
   EMPLOYEES,
 } from 'src/app/shared/constants/routing-paths.consts';
+import { ICv } from 'src/app/shared/interfaces/cv.interface';
+import { CvApiService } from 'src/app/shared/services/api/cv/cv.api.service';
 import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
+import { ErrorService } from 'src/app/shared/services/error/error.service';
 import { CommonFacade } from 'src/app/store/common/common.facade';
+import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
 import { EmployeesFacade } from 'src/app/store/employees/employees.facade';
 
 @UntilDestroy()
@@ -25,6 +29,10 @@ export class EditEmployeePageComponent implements OnInit {
     private employeesFacade: EmployeesFacade,
     private activatedRoute: ActivatedRoute,
     private employeesApi: EmployeesApiService,
+    private cvFacade: CvsFacade,
+    private cvApi: CvApiService,
+    private router: Router,
+    private errorService: ErrorService,
   ) {}
 
   public ngOnInit(): void {
@@ -56,5 +64,29 @@ export class EditEmployeePageComponent implements OnInit {
       .deleteEmployee(this.id)
       .pipe(untilDestroyed(this))
       .subscribe();
+  }
+
+  public editEmployee(): void {
+    this.cvFacade
+      .selectNewCvs()
+      .pipe(
+        untilDestroyed(this),
+        concatMap((cvs: ICv[]) => this.cvApi.addCvs(cvs)),
+      )
+      .subscribe({
+        next: () => this.router.navigate([EMPLOYEES.path]),
+        error: error => this.errorService.showError(error.message),
+      });
+
+    this.cvFacade
+      .selectEditedCvs()
+      .pipe(
+        untilDestroyed(this),
+        concatMap((cvs: ICv[]) => this.cvApi.updateCvs(cvs)),
+      )
+      .subscribe({
+        next: () => this.router.navigate([EMPLOYEES.path]),
+        error: error => this.errorService.showError(error.message),
+      });
   }
 }

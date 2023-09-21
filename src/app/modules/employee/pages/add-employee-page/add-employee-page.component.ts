@@ -1,10 +1,21 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { concatMap } from 'rxjs';
 import {
   ADD_EMPLOYEE,
   EMPLOYEES,
 } from 'src/app/shared/constants/routing-paths.consts';
+import { ICv } from 'src/app/shared/interfaces/cv.interface';
+import {
+  IEmployeeData,
+  IEmployeeDto,
+} from 'src/app/shared/interfaces/employees.interface';
+import { CvApiService } from 'src/app/shared/services/api/cv/cv.api.service';
+import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
 import { CommonFacade } from 'src/app/store/common/common.facade';
-
+import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
+@UntilDestroy()
 @Component({
   selector: 'app-add-employee-page',
   templateUrl: './add-employee-page.component.html',
@@ -12,7 +23,14 @@ import { CommonFacade } from 'src/app/store/common/common.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddEmployeePageComponent implements OnInit {
-  constructor(private commonFacade: CommonFacade) {}
+  private cvs: ICv[];
+  constructor(
+    private commonFacade: CommonFacade,
+    private employeeApiService: EmployeesApiService,
+    private router: Router,
+    private cvApiService: CvApiService,
+    private cvFacade: CvsFacade,
+  ) {}
 
   ngOnInit(): void {
     this.commonFacade.pushToBreadCrumbs([
@@ -23,5 +41,22 @@ export class AddEmployeePageComponent implements OnInit {
       title: 'Employees',
       subtitle: 'Add new employee',
     });
+  }
+
+  public addEmployee(employee: IEmployeeData) {
+    this.cvFacade
+      .getCvs()
+      .pipe(untilDestroyed(this))
+      .subscribe((cvs: ICv[]) => (this.cvs = cvs));
+
+    this.employeeApiService
+      .addEmployee(employee)
+      .pipe(
+        untilDestroyed(this),
+        concatMap((employee: IEmployeeDto) =>
+          this.cvApiService.addCvs(this.cvs, employee.id),
+        ),
+      )
+      .subscribe(() => this.router.navigate([EMPLOYEES.path]));
   }
 }
