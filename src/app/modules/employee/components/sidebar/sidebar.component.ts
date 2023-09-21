@@ -25,4 +25,8 @@ export class SidebarComponent {
       .pipe(untilDestroyed(this))
       .subscribe((cv: ICv) => (this.cv = cv));
   }
+
+  public deleteCv(id: number): void {
+    this.cvFacade.deleteCv(id);
+  }
 }

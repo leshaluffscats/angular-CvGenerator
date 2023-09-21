@@ -38,6 +38,10 @@ export class CvApiService {
     return combineLatest(cvs.map((cv, index) => this.updateCv(cv, index)));
   }
 
+  public deleteCv(id: number): Observable<ICvDto> {
+    return this.http.delete<ICvDto>(`${API_CV_URL}/${id}`);
+  }
+
   private addCv(cv: ICv, index: number) {
     return of(cv).pipe(
       delay(index * 300),

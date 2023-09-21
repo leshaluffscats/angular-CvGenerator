@@ -5,5 +5,8 @@
     [ngClass]="{ active: cvName?.id === cv?.id }"
   >
     {{ cvName.name }}
+    <button (click)="deleteCv(cvName.id)">
+      <i class="pi pi-trash"></i>
+    </button>
   </li>
 </ul>

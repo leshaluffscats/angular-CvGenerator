@@ -3,7 +3,13 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import { AppState } from '..';
-import { addToCvs, resetCvs, resetSelectedCv, selectCv } from './cvs.actions';
+import {
+  addToCvs,
+  deleteCv,
+  resetCvs,
+  resetSelectedCv,
+  selectCv,
+} from './cvs.actions';
 import {
   getSelectedCv,
   selectAllCvs,
@@ -47,5 +53,9 @@ export class CvsFacade {
 
   public selectEditedCvs(): Observable<ICv[]> {
     return this.store.select(selectEditedCvs);
+  }
+
+  public deleteCv(id: number): void {
+    this.store.dispatch(deleteCv({ id }));
   }
 }

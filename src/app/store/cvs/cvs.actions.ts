@@ -12,4 +12,7 @@ export const resetCvs = createAction('[Cvs] Reset cvs');
 export const updateCv = createAction('[Cvs] Update cvs', props<{ cv: ICv }>());
 
 export const selectCv = createAction('[Cv] Select cv', props<{ id: number }>());
+
 export const resetSelectedCv = createAction('[Cv] Reset selected cv');
+
+export const deleteCv = createAction('[Cv] Delete cv', props<{ id: number }>());

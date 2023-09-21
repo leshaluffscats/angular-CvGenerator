@@ -24,6 +24,9 @@ export const cvsReducer = createReducer(
   on(cvsActions.resetCvs, state => {
     return cvsAdapter.removeAll(state);
   }),
+  on(cvsActions.deleteCv, (state, { id }) => {
+    return cvsAdapter.removeOne(id, state);
+  }),
   on(cvsActions.selectCv, (state, { id }) => ({
     ...state,
     selectedCv: state.entities[id] || null,
