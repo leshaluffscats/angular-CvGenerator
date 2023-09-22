@@ -50,6 +50,11 @@ export const EDIT_PROJECT: IRoutingPath = {
   fullPath: '/edit',
 };
 
+export const PDF: IRoutingPath = {
+  path: 'pdf',
+  fullPath: '/pdf',
+};
+
 export const ID_PATH: IRoutingPath = {
   path: ':id',
   fullPath: '/:id',

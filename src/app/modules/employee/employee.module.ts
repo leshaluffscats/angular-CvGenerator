@@ -20,6 +20,7 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { AddEmployeePageComponent } from './pages/add-employee-page/add-employee-page.component';
 import { EditEmployeePageComponent } from './pages/edit-employee-page/edit-employee-page.component';
 import { EmployeesListPageComponent } from './pages/employees-list-page/employees-list-page.component';
+import { CvPdfPageComponent } from './pages/cv-pdf-page/cv-pdf-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { EmployeesListPageComponent } from './pages/employees-list-page/employee
     AddEmployeePageComponent,
     TabsComponent,
     SidebarComponent,
+    CvPdfPageComponent,
   ],
   imports: [
     AccordionModule,

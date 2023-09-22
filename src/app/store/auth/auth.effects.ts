@@ -8,7 +8,7 @@ import { IJwt } from 'src/app/shared/interfaces/auth-api.interface';
 import { AuthApiService } from 'src/app/shared/services/api/auth/auth.api.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import * as authActions from './auth.actions';
-import { ErrorService } from 'src/app/shared/services/error/error.service';
+import { NotificationService } from 'src/app/shared/services/error/error.service';
 
 @Injectable()
 export class AuthEffects {
@@ -57,6 +57,6 @@ export class AuthEffects {
     private auth: AuthService,
     private actions$: Actions,
     private authApi: AuthApiService,
-    private errorService: ErrorService,
+    private errorService: NotificationService,
   ) {}
 }

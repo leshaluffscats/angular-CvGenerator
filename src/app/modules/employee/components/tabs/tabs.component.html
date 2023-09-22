@@ -5,7 +5,7 @@
       class="real-info"
     >
       <app-employee-form [formControl]="employeeForm"></app-employee-form>
-      <ng-content></ng-content>
+      <ng-content select="[delete]"></ng-content>
     </p-tabPanel>
     <p-tabPanel header="CV">
       <app-virtual-cv></app-virtual-cv>

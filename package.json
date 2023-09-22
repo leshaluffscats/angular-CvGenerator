@@ -40,6 +40,7 @@
     "@ngx-translate/http-loader": "^8.0.0",
     "@types/lodash-es": "^4.17.9",
     "@typescript-eslint/parser": "^6.3.0",
+    "jspdf": "^2.5.1",
     "lodash-es": "^4.17.21",
     "primeicons": "^6.0.1",
     "primeng": "16.1.0",

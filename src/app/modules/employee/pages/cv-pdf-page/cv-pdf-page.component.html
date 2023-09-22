@@ -1,0 +1,33 @@
+<main>
+  <header>
+    <h3>Cv name: {{ cv?.cvName }}</h3>
+  </header>
+  <section>
+    <div class="employee">
+      <h4>Employee info</h4>
+      <p>First name: {{ cv?.firstName }}</p>
+      <p>Last name:{{ cv?.lastName }}</p>
+      <p>email: {{ cv?.email }}</p>
+      <p>Department: {{ cv?.department }}</p>
+      <p>Specialization:{{ cv?.specialization }}</p>
+    </div>
+    <div>
+      <div class="projects">
+        <h4>Projects:</h4>
+        <div *ngFor="let project of cv.projects">
+          <p>Project name:{{ project.projectName }}</p>
+          <p>Description:{{ project.description }}</p>
+          <p>Start date:{{ project.startDate | date }}</p>
+          <p>End date:{{ project.endDate | date }}</p>
+        </div>
+      </div>
+      <div class="languages">
+        <h4>Languages:</h4>
+        <div *ngFor="let language of cv.language">
+          <p>Language: {{ language.level.name }}</p>
+          <p>Level:{{ language.name.name }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

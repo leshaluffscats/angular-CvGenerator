@@ -6,6 +6,7 @@ import { AppState } from '..';
 import {
   addToCvs,
   deleteCv,
+  loadCvFromApi,
   resetCvs,
   resetSelectedCv,
   selectCv,
@@ -57,5 +58,9 @@ export class CvsFacade {
 
   public deleteCv(id: number): void {
     this.store.dispatch(deleteCv({ id }));
+  }
+
+  public loadCvFromApi(id: string): void {
+    this.store.dispatch(loadCvFromApi({ id }));
   }
 }

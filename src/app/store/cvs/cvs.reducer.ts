@@ -4,12 +4,14 @@ import * as cvsActions from './cvs.actions';
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 
 export interface ICvsInitialState extends EntityState<ICv> {
+  isLoading: boolean;
   selectedCv: ICv;
 }
 
 export const cvsAdapter: EntityAdapter<ICv> = createEntityAdapter<ICv>();
 
 export const cvsInitialState: ICvsInitialState = cvsAdapter.getInitialState({
+  isLoading: false,
   selectedCv: null,
 });
 
@@ -34,5 +36,14 @@ export const cvsReducer = createReducer(
   on(cvsActions.resetSelectedCv, state => ({
     ...state,
     selectedCv: null,
+  })),
+  on(cvsActions.loadCvFromApi, state => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(cvsActions.loadCvFromApiSuccess, (state, { cv }) => ({
+    ...state,
+    isLoading: false,
+    selectedCv: cv,
   })),
 );

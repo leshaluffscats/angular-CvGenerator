@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { concatMap, filter, switchMap, take } from 'rxjs';
+import { filter, mergeMap, switchMap, take } from 'rxjs';
 import {
   EDIT_EMPLOYEE,
   EMPLOYEES,
@@ -9,7 +9,7 @@ import {
 import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import { CvApiService } from 'src/app/shared/services/api/cv/cv.api.service';
 import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
-import { ErrorService } from 'src/app/shared/services/error/error.service';
+import { NotificationService } from 'src/app/shared/services/error/error.service';
 import { CommonFacade } from 'src/app/store/common/common.facade';
 import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
 import { EmployeesFacade } from 'src/app/store/employees/employees.facade';
@@ -32,7 +32,7 @@ export class EditEmployeePageComponent implements OnInit {
     private cvFacade: CvsFacade,
     private cvApi: CvApiService,
     private router: Router,
-    private errorService: ErrorService,
+    private notification: NotificationService,
   ) {}
 
   public ngOnInit(): void {
@@ -51,7 +51,6 @@ export class EditEmployeePageComponent implements OnInit {
         take(1),
       )
       .subscribe(employee => {
-        console.log(employee);
         this.commonFacade.setTitles({
           title: 'Employee',
           subtitle: `${employee.firstName} ${employee.lastName}'s profile`,
@@ -71,22 +70,25 @@ export class EditEmployeePageComponent implements OnInit {
       .selectNewCvs()
       .pipe(
         untilDestroyed(this),
-        concatMap((cvs: ICv[]) => this.cvApi.addCvs(cvs)),
+        mergeMap((cvs: ICv[]) => this.cvApi.addCvs(cvs)),
       )
       .subscribe({
         next: () => this.router.navigate([EMPLOYEES.path]),
-        error: error => this.errorService.showError(error.message),
+        error: error => this.notification.showError(error.message),
       });
 
     this.cvFacade
       .selectEditedCvs()
       .pipe(
         untilDestroyed(this),
-        concatMap((cvs: ICv[]) => this.cvApi.updateCvs(cvs)),
+        mergeMap((cvs: ICv[]) => this.cvApi.updateCvs(cvs)),
       )
       .subscribe({
-        next: () => this.router.navigate([EMPLOYEES.path]),
-        error: error => this.errorService.showError(error.message),
+        next: () => {
+          this.router.navigate([EMPLOYEES.path]);
+          this.notification.showSuccessMessage('Employee info was updated');
+        },
+        error: error => this.notification.showError(error.message),
       });
   }
 }

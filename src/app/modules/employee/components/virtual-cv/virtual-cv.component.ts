@@ -12,6 +12,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime, filter } from 'rxjs';
 import {
@@ -43,8 +44,8 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
   public selectProject: FormControl;
   public cvNames: INameAndId[] = [];
   public cvs: ICv[] = [];
+  public selectedCv: IVirtualCvForm;
 
-  private selectedCv: IVirtualCvForm;
   private employeeId: number;
 
   constructor(
@@ -54,6 +55,7 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
     private cdRef: ChangeDetectorRef,
     private cvService: CvsService,
     private employeeFacade: EmployeesFacade,
+    private router: Router,
   ) {
     this.selectProject = this.fb.control('');
     this.form = this.fb.group({

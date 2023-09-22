@@ -13,6 +13,7 @@ import {
 } from 'src/app/shared/interfaces/employees.interface';
 import { CvApiService } from 'src/app/shared/services/api/cv/cv.api.service';
 import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
+import { NotificationService } from 'src/app/shared/services/error/error.service';
 import { CommonFacade } from 'src/app/store/common/common.facade';
 import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
 @UntilDestroy()
@@ -30,6 +31,7 @@ export class AddEmployeePageComponent implements OnInit {
     private router: Router,
     private cvApiService: CvApiService,
     private cvFacade: CvsFacade,
+    private notification: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +59,14 @@ export class AddEmployeePageComponent implements OnInit {
           this.cvApiService.addCvs(this.cvs, employee.id),
         ),
       )
-      .subscribe(() => this.router.navigate([EMPLOYEES.path]));
+      .subscribe({
+        next: () => {
+          this.router.navigate([EMPLOYEES.path]);
+          this.notification.showSuccessMessage(
+            'New employee was succesfully added',
+          );
+        },
+        error: error => this.notification.showError(error.message),
+      });
   }
 }

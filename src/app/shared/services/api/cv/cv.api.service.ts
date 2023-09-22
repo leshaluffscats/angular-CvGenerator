@@ -6,16 +6,21 @@ import {
   concatMap,
   delay,
   forkJoin,
+  map,
   of,
 } from 'rxjs';
 import { API_CV_URL } from 'src/app/shared/constants/api.consts';
 import { ICv, ICvDto } from 'src/app/shared/interfaces/cv.interface';
+import { CvsService } from '../../cvs/cvs.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CvApiService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private cvService: CvsService,
+  ) {}
 
   public addCvs(cvs: ICv[], employeeId?: number): Observable<ICvDto[]> {
     const cvsObservables = cvs.map((cv, index) => {
@@ -40,6 +45,12 @@ export class CvApiService {
 
   public deleteCv(id: number): Observable<ICvDto> {
     return this.http.delete<ICvDto>(`${API_CV_URL}/${id}`);
+  }
+
+  public loadCvById(id: string): Observable<ICv> {
+    return this.http
+      .get<ICvDto>(`${API_CV_URL}/${id}`)
+      .pipe(map((cv: ICvDto) => this.cvService.tranformCvDtoToCv(cv)));
   }
 
   private addCv(cv: ICv, index: number) {

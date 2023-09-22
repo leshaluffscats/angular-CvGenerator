@@ -37,4 +37,14 @@ export class EmployeesApiService {
   public deleteEmployee(id: string): Observable<void> {
     return this.http.delete<void>(`${API_EMPLOYEES_URL}/${id}`);
   }
+
+  public updateEmployee(
+    id: number,
+    employee: IEmployeeData,
+  ): Observable<ISingleEmployeeInfo> {
+    return this.http.put<ISingleEmployeeInfo>(
+      `${API_EMPLOYEES_URL}/${id}`,
+      employee,
+    );
+  }
 }
