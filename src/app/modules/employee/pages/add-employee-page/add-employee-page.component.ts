@@ -13,7 +13,7 @@ import {
 } from 'src/app/shared/interfaces/employees.interface';
 import { CvApiService } from 'src/app/shared/services/api/cv/cv.api.service';
 import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
-import { NotificationService } from 'src/app/shared/services/error/error.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { CommonFacade } from 'src/app/store/common/common.facade';
 import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
 @UntilDestroy()

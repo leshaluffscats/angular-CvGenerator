@@ -5,23 +5,18 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable, filter, mergeMap, take } from 'rxjs';
-import { AppState } from 'src/app/store';
 import { AuthFacade } from 'src/app/store/auth/auth.facade';
 import { IAuthInitialState } from 'src/app/store/auth/auth.reducer';
 import { API_AUTH_URL } from '../../constants/api.consts';
 import { IJwt } from '../../interfaces/auth-api.interface';
 import { AuthApiService } from '../../services/api/auth/auth.api.service';
-import { AuthService } from '../../services/auth/auth.service';
 
 @Injectable()
 export class TokenRefreshInterceptor implements HttpInterceptor {
   constructor(
-    private auth: AuthService,
     private authFacade: AuthFacade,
     private authApi: AuthApiService,
-    private store: Store<AppState>,
   ) {}
 
   intercept(

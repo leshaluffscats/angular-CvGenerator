@@ -8,7 +8,7 @@ import {
 } from 'src/app/shared/interfaces/employees.interface';
 import { IError } from 'src/app/shared/interfaces/error.interface';
 import { EmployeesApiService } from 'src/app/shared/services/api/employees/employees.api.service';
-import { NotificationService } from 'src/app/shared/services/error/error.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { AppState } from '..';
 import * as employeesActions from './employees.actions';
 import { CvsService } from 'src/app/shared/services/cvs/cvs.service';

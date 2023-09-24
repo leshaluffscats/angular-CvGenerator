@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { ICv } from 'src/app/shared/interfaces/cv.interface';
 import { CvApiService } from 'src/app/shared/services/api/cv/cv.api.service';
-import { NotificationService } from 'src/app/shared/services/error/error.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import * as cvsActions from './cvs.actions';
 
 @Injectable()

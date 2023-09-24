@@ -1,14 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  Observable,
-  combineLatest,
-  concatMap,
-  delay,
-  forkJoin,
-  map,
-  of,
-} from 'rxjs';
+import { Observable, combineLatest, concatMap, delay, map, of } from 'rxjs';
 import { API_CV_URL } from 'src/app/shared/constants/api.consts';
 import { ICv, ICvDto } from 'src/app/shared/interfaces/cv.interface';
 import { CvsService } from '../../cvs/cvs.service';
@@ -23,20 +15,19 @@ export class CvApiService {
   ) {}
 
   public addCvs(cvs: ICv[], employeeId?: number): Observable<ICvDto[]> {
-    const cvsObservables = cvs.map((cv, index) => {
-      const newcv = { ...cv };
+    return combineLatest(
+      cvs.map((cv, index) => {
+        const newCv = { ...cv };
+        delete newCv.id;
+        delete newCv.isNew;
 
-      if (employeeId) {
-        newcv.employeeId = employeeId;
-      }
+        if (employeeId) {
+          newCv.employeeId = employeeId;
+        }
 
-      delete newcv.id;
-      delete newcv.isNew;
-
-      return this.addCv(newcv, index);
-    });
-
-    return forkJoin(cvsObservables);
+        return this.addCv(newCv, index);
+      }),
+    );
   }
 
   public updateCvs(cvs: ICv[]): Observable<ICvDto[]> {

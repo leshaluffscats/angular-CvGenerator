@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { IProject } from 'src/app/shared/interfaces/projects.interface';
 import { ProjectsApiService } from 'src/app/shared/services/api/projects/projects-api.service';
-import { NotificationService } from 'src/app/shared/services/error/error.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import * as projectsActions from './projects.actions';
 
 @Injectable()

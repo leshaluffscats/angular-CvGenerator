@@ -12,14 +12,7 @@ export class ProjectsService {
   constructor() {}
 
   public modifyProjectsArr(projects: IProjectDto[]): IProject[] {
-    return projects.map(project => ({
-      ...project,
-      startDate: new Date(project.startDate),
-      endDate: new Date(project.endDate),
-      techStack: this.getName(project.techStack),
-      responsibilities: this.getName(project.responsibilities),
-      teamRoles: this.getName(project.teamRoles),
-    }));
+    return projects.map(project => this.modifyProject(project));
   }
 
   public modifyProject(project: IProjectDto): IProject {
