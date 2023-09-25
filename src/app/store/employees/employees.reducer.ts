@@ -47,6 +47,11 @@ export const employeesReducer = createReducer(
     error: null,
     employee,
   })),
+  on(employeesActions.getEmployeeByidFailure, state => ({
+    ...state,
+    isLoading: false,
+    error: null,
+  })),
   on(employeesActions.resetEmployeeInfo, state => ({
     ...state,
     employee: null,

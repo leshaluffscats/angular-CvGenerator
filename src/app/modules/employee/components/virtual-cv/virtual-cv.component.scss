@@ -11,6 +11,18 @@ main {
   @include flex;
   gap: 30px;
 
+  .right-side {
+    @include flex;
+    flex-direction: column;
+
+    .buttons {
+      @include flex;
+      width: 20%;
+      justify-content: space-between;
+      align-self: flex-end;
+    }
+  }
+
   .sidebar {
     width: 20%;
     align-self: flex-start;

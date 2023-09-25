@@ -1,4 +1,5 @@
 <main>
+  <p-progressSpinner *ngIf="isLoading | async"></p-progressSpinner>
   <app-tabs (buttonClicked)="editEmployee()">
     <p-button
       class="delete-btn"
@@ -6,10 +7,6 @@
       label="Delete employee"
       (click)="deleteEmployee()"
       delete
-    ></p-button>
-    <p-button
-      label="Edit employee info"
-      edit
     ></p-button>
   </app-tabs>
 </main>

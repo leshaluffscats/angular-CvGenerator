@@ -29,3 +29,5 @@ export const loadCvFromApiSuccess = createAction(
 export const loadCvFromApiFailure = createAction(
   '[Cv] load cv from api failure',
 );
+
+export const setLoadingToTrue = createAction('[Cv] Set loading to true');

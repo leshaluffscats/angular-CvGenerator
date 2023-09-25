@@ -25,6 +25,7 @@ import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
 })
 export class AddEmployeePageComponent implements OnInit {
   private cvs: ICv[];
+
   constructor(
     private commonFacade: CommonFacade,
     private employeeApiService: EmployeesApiService,

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter, mergeMap, switchMap, take } from 'rxjs';
+import { Observable, filter, mergeMap, switchMap, take } from 'rxjs';
 import {
   EDIT_EMPLOYEE,
   EMPLOYEES,
@@ -22,6 +22,7 @@ import { EmployeesFacade } from 'src/app/store/employees/employees.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditEmployeePageComponent implements OnInit {
+  public isLoading: Observable<boolean>;
   private id: string;
 
   constructor(
@@ -36,6 +37,7 @@ export class EditEmployeePageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.isLoading = this.employeesFacade.selectLoadingState();
     this.commonFacade.pushToBreadCrumbs([
       { label: 'Employees', routerLink: EMPLOYEES.path },
       { label: 'Edit', routerLink: EMPLOYEES.path + EDIT_EMPLOYEE.fullPath },

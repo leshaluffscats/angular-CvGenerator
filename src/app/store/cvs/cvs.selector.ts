@@ -26,3 +26,8 @@ export const selectEditedCvs = createSelector(
   (state: ICvsInitialState) =>
     selectAll(state).filter(cv => cv.isEdited === true),
 );
+
+export const selectLoadingState = createSelector(
+  selectCvsState,
+  (state: ICvsInitialState) => state.isLoading,
+);

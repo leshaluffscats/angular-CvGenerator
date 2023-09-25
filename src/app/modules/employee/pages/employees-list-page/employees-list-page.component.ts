@@ -19,6 +19,7 @@ import { columns } from './constants/employees.const';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesListPageComponent implements OnInit {
+  public isLoading: Observable<boolean>;
   public columns = columns;
   public employeesData$: Observable<IEmployeeData[]>;
 
@@ -29,6 +30,7 @@ export class EmployeesListPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = this.employeesFacade.selectLoadingState();
     this.commonFacade.pushToBreadCrumbs([
       { label: 'Employees', routerLink: EMPLOYEES.path },
     ]);

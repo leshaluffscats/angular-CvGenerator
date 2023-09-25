@@ -6,16 +6,13 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Observable, mergeMap, take } from 'rxjs';
-import { AppState } from 'src/app/store';
 import { AuthFacade } from 'src/app/store/auth/auth.facade';
 import { AUTH } from '../../constants/routing-paths.consts';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(
-    private store: Store<AppState>,
     private router: Router,
     private authFacade: AuthFacade,
   ) {}

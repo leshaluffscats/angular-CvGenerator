@@ -11,7 +11,11 @@ import {
   getEmployees,
   resetEmployeeInfo,
 } from './employees.actions';
-import { selectEmployee, selectEmployees } from './employees.selector';
+import {
+  selectEmployee,
+  selectEmployees,
+  selectLoading,
+} from './employees.selector';
 
 @Injectable({
   providedIn: 'root',
@@ -35,5 +39,8 @@ export class EmployeesFacade {
 
   public resetEmployee(): void {
     this.store.dispatch(resetEmployeeInfo());
+  }
+  public selectLoadingState(): Observable<boolean> {
+    return this.store.select(selectLoading);
   }
 }

@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 import { BaseTableComponent } from 'src/app/shared/components/base-table/base-table.component';
 import { ChipsComponent } from 'src/app/shared/components/chips/chips.component';
@@ -18,9 +19,9 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { VirtualCvComponent } from './components/virtual-cv/virtual-cv.component';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { AddEmployeePageComponent } from './pages/add-employee-page/add-employee-page.component';
+import { CvPdfPageComponent } from './pages/cv-pdf-page/cv-pdf-page.component';
 import { EditEmployeePageComponent } from './pages/edit-employee-page/edit-employee-page.component';
 import { EmployeesListPageComponent } from './pages/employees-list-page/employees-list-page.component';
-import { CvPdfPageComponent } from './pages/cv-pdf-page/cv-pdf-page.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CvPdfPageComponent } from './pages/cv-pdf-page/cv-pdf-page.component';
     ReactiveFormsModule,
     InputComponent,
     SelectComponent,
+    ProgressSpinnerModule,
   ],
 })
 export class EmployeeModule {}

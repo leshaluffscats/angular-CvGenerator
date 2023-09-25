@@ -10,11 +10,19 @@
     class="right-side"
     *ngIf="cvs.length && selectedCv"
   >
-    <p-button
-      *ngIf="!selectedCv.isNew"
-      label="PDF"
-      [routerLink]="['/employees', 'pdf', selectedCv.id]"
-    ></p-button>
+    <div class="buttons">
+      <p-button
+        *ngIf="!selectedCv.isNew"
+        label="PDF"
+        [routerLink]="['/employees', 'pdf', selectedCv.id]"
+      ></p-button>
+      <p-button
+        *ngIf="!selectedCv.isNew"
+        label="Delete Cv"
+        styleClass="p-button-danger"
+        (click)="deleteCv(selectedCv.id)"
+      ></p-button>
+    </div>
     <form [formGroup]="form">
       <div class="cv-name">
         <app-input

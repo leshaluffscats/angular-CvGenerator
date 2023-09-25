@@ -32,6 +32,7 @@ export const cvsReducer = createReducer(
   on(cvsActions.selectCv, (state, { id }) => ({
     ...state,
     selectedCv: state.entities[id] || null,
+    isLoading: false,
   })),
   on(cvsActions.resetSelectedCv, state => ({
     ...state,
@@ -45,5 +46,9 @@ export const cvsReducer = createReducer(
     ...state,
     isLoading: false,
     selectedCv: cv,
+  })),
+  on(cvsActions.setLoadingToTrue, state => ({
+    ...state,
+    isLoading: true,
   })),
 );

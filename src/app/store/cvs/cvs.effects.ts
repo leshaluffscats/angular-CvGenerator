@@ -8,7 +8,7 @@ import * as cvsActions from './cvs.actions';
 
 @Injectable()
 export class CvsEffects {
-  getProjects$ = createEffect(() =>
+  getCv$ = createEffect(() =>
     this.actions$.pipe(
       ofType(cvsActions.loadCvFromApi),
       mergeMap(({ id }) =>

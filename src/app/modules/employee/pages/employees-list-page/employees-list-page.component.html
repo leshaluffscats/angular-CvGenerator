@@ -1,4 +1,5 @@
 <main>
+  <p-progressSpinner *ngIf="isLoading | async"></p-progressSpinner>
   <p-button
     label="{{ 'BUTTONS.ADD_NEW_EMPLOYEE' | translate }}"
     routerLink="add"

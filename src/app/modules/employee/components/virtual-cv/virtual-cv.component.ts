@@ -12,7 +12,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime, filter } from 'rxjs';
 import {
@@ -25,7 +24,9 @@ import {
   INameAndId,
   IProject,
 } from 'src/app/shared/interfaces/projects.interface';
+import { CvApiService } from 'src/app/shared/services/api/cv/cv.api.service';
 import { CvsService } from 'src/app/shared/services/cvs/cvs.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { markAllAsDirty } from 'src/app/shared/utils/mark-all-as-dirty.utils';
 import { CvsFacade } from 'src/app/store/cvs/cvs.facade';
 import { EmployeesFacade } from 'src/app/store/employees/employees.facade';
@@ -55,7 +56,8 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
     private cdRef: ChangeDetectorRef,
     private cvService: CvsService,
     private employeeFacade: EmployeesFacade,
-    private router: Router,
+    private cvApi: CvApiService,
+    private notification: NotificationService,
   ) {
     this.selectProject = this.fb.control('');
     this.form = this.fb.group({
@@ -158,6 +160,20 @@ export class VirtualCvComponent implements OnInit, OnDestroy {
 
   public deleteLanguage(index: number): void {
     this.languageForms.removeAt(index);
+  }
+
+  public deleteCv(id: number): void {
+    this.cvApi
+      .deleteCv(id)
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next: () => {
+          this.cvNames = this.cvNames.filter(cv => id !== cv.id);
+          this.cdRef.markForCheck();
+          this.notification.showSuccessMessage('Cv was successfully deleted');
+        },
+        error: error => this.notification.showError(error.message),
+      });
   }
 
   public addCvRow(): void {

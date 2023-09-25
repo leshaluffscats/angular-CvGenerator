@@ -4,10 +4,13 @@
   width: 100%;
 }
 
-tr {
-  cursor: pointer;
+p-table {
+  overflow: auto;
+  tr {
+    cursor: pointer;
 
-  &:hover {
-    background-color: $grey-bg;
+    &:hover {
+      background-color: $grey-bg;
+    }
   }
 }

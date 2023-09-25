@@ -15,6 +15,7 @@ import {
   getSelectedCv,
   selectAllCvs,
   selectEditedCvs,
+  selectLoadingState,
   selectNewCvs,
 } from './cvs.selector';
 
@@ -62,5 +63,9 @@ export class CvsFacade {
 
   public loadCvFromApi(id: string): void {
     this.store.dispatch(loadCvFromApi({ id }));
+  }
+
+  public isCvLoading(): Observable<boolean> {
+    return this.store.select(selectLoadingState);
   }
 }

@@ -14,7 +14,7 @@ export const selectEmployee = createSelector(
   (state: IEmployeeInitialState) => state.employee,
 );
 
-// export const selectEmployeeCvs = createSelector(
-//   selectEmployeesState,
-//   (state: IEmployeeInitialState) => state.employee.cvs,
-// );
+export const selectLoading = createSelector(
+  selectEmployeesState,
+  (state: IEmployeeInitialState) => state.isLoading,
+);
