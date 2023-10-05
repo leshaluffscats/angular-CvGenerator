@@ -9,11 +9,7 @@ import {
 import { TableModule } from 'primeng/table';
 import { IProject } from '../../interfaces/projects.interface';
 import { ToDatePipe } from '../../pipes/to-date/to-date.pipe';
-
-interface IColumns {
-  fieldValue: string;
-  fieldCaption: string;
-}
+import { IColumn } from '../../interfaces/columns.interface';
 
 @Component({
   selector: 'app-base-table',
@@ -25,7 +21,7 @@ interface IColumns {
 })
 export class BaseTableComponent {
   @Input() data: unknown[];
-  @Input() columns: IColumns[];
+  @Input() columns: IColumn[];
 
   @Output() rowClicked = new EventEmitter();
 

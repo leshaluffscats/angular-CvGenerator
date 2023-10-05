@@ -5,9 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class ToDatePipe implements PipeTransform {
-  transform(value: string): string {
-    if (typeof value === 'object' && !Array.isArray(value)) {
-      return new Date(value).toLocaleDateString();
+  transform(value: Date | string): string {
+    if (value instanceof Date) {
+      return value.toLocaleDateString();
     }
     return value;
   }
