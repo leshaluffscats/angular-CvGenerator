@@ -16,7 +16,7 @@ export const refreshTokenFailure = createAction(
 // get access token actions
 export const getAccessToken = createAction(
   '[Auth] Get access token',
-  props<{ user: IAuthCredentials }>(),
+  props<{ authCredentials: IAuthCredentials }>(),
 );
 export const getAccessTokenSuccess = createAction(
   '[Auth] Get access token success',
